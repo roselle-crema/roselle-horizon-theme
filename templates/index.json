@@ -166,6 +166,7 @@
         "eyebrow": "TU PIEL, SIN EXIGENCIAS",
         "heading": "La textura es parte de tu piel. Cuidarla también.",
         "body": "<p>La piel de naranja y la textura irregular pueden formar parte de tu cuerpo. Si querés mejorar su apariencia, podés empezar por un cuidado simple, pensado para acompañarte.</p>",
+        "image": "shopify://shop_images/f3e72005-9d2f-43e0-816f-8d4fd00f528f.png",
         "image_alt": "Un momento de cuidado corporal",
         "media_kind": "ritual",
         "detail": "Un momento para vos. Sin promesas imposibles.",
@@ -366,7 +367,7 @@
         "b1": {
           "type": "trust",
           "settings": {
-            "icon": "shipping",
+            "icon": "support",
             "title": "Envíos a toda Argentina",
             "text": "Consultá el costo y las opciones para tu dirección al comprar.",
             "link": "",
@@ -465,7 +466,7 @@
       ],
       "settings": {
         "eyebrow": "ANTES DE EMPEZAR",
-        "heading": "Conocé tu próximo ritual."
+        "heading": "¿ Alguna Pregunta?"
       }
     },
     "closing": {
