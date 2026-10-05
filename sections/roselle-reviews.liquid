@@ -1,14 +1,35 @@
+{%- liquid
+  # Real reviews = blocks not marked as placeholder and with a quote. The storefront shows only those;
+  # the Theme Editor shows every block so placeholders can be filled in.
+  assign real_reviews = 0
+  for block in section.blocks
+    if block.settings.placeholder == false and block.settings.quote != blank
+      assign real_reviews = real_reviews | plus: 1
+    endif
+  endfor
+-%}
+{%- if real_reviews > 0 or request.design_mode -%}
 <div class="rs-reviews rs-wrap">
 <div class="rs-section-heading">
 <p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>
 <h2>{{ section.settings.heading | escape }}</h2>{% if section.settings.body != blank %}<div class="rs-prose">{{ section.settings.body }}</div>{% endif %}</div>
-<div class="rs-review-grid">{% for block in section.blocks %}<article class="rs-review" {{ block.shopify_attributes }}>
+{%- if request.design_mode and real_reviews == 0 -%}<p class="rs-editor-note">{{ section.settings.editor_hint | escape }}</p>{%- endif -%}
+<div class="rs-review-grid">{% for block in section.blocks %}{% liquid
+  assign is_real = false
+  if block.settings.placeholder == false and block.settings.quote != blank
+    assign is_real = true
+  endif
+  unless is_real or request.design_mode
+    continue
+  endunless
+%}<article class="rs-review" {{ block.shopify_attributes }}>
 {% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 600 | image_tag: widths: '300, 600', sizes: '(min-width: 900px) 30vw, 100vw', loading: 'lazy', alt: block.settings.author, class: 'rs-review-image' }}{% endif %}
 {% if block.settings.placeholder %}<span class="rs-review-tag">{{ settings.roselle_ui_review_placeholder | escape }}</span>
 <h3>{{ settings.roselle_ui_review_title | escape }}</h3>
 <p>{{ settings.roselle_ui_review_pending | escape }}</p>{% else %}<blockquote>{{ block.settings.quote | escape }}</blockquote>
 <p class="rs-review-author">{{ block.settings.author | escape }}</p>{% endif %}</article>{% endfor %}</div>
 </div>
+{%- endif -%}
 
 {% schema %}
 {
@@ -26,6 +47,16 @@
       "id": "heading",
       "label": "Título",
       "default": "El cuidado también se comparte."
+    },
+    {
+      "type": "paragraph",
+      "content": "En la tienda solo se muestran reseñas reales: bloques con \"Mostrar como placeholder\" desactivado y texto de reseña cargado. Si no hay ninguna, la sección no aparece."
+    },
+    {
+      "type": "text",
+      "id": "editor_hint",
+      "label": "Ayuda del editor",
+      "default": "Esta sección está oculta en la tienda hasta que cargues al menos una reseña real."
     }
   ],
   "max_blocks": 6,
