@@ -21,7 +21,7 @@
           {% for option in product.variants %}
             <option value="{{ option.id }}" {% if option.id == variant.id %}selected{% endif %} {% unless option.available %}disabled{% endunless %}
               data-price="{{ option.price | money_with_currency | escape }}" data-compare="{% if option.compare_at_price > option.price %}{{ option.compare_at_price | money_with_currency | escape }}{% endif %}"
-              data-min="{{ option.quantity_rule.min | default: 1 }}" data-max="{{ option.quantity_rule.max }}" data-step="{{ option.quantity_rule.increment | default: 1 }}">
+              data-min="{{ option.quantity_rule.min | default: 1 }}" data-max="{{ option.quantity_rule.max }}" data-step="{{ option.quantity_rule.increment | default: 1 }}" data-media-id="{{ option.featured_media.id }}">
               {{ option.title | escape }} — {{ option.price | money_with_currency }}{% unless option.available %} — {{ settings.roselle_ui_sold_out | escape }}{% endunless %}
             </option>
           {% endfor %}

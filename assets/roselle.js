@@ -6,7 +6,7 @@ if (!customElements.get('roselle-purchase')) {
       this.selector = this.querySelector('select[name="id"]');
       this.quantity = this.querySelector('input[name="quantity"]');
       this.sticky = document.querySelector(`[data-roselle-sticky="${this.dataset.formId}"]`);
-      this.selector?.addEventListener('change', () => this.updateVariant(), { signal: this.controller.signal });
+      this.selector?.addEventListener('change', (event) => this.updateVariant(event), { signal: this.controller.signal });
       this.updateVariant();
       if (this.sticky && 'IntersectionObserver' in window) {
         document.body.classList.add('rs-has-sticky');
@@ -16,9 +16,12 @@ if (!customElements.get('roselle-purchase')) {
         this.observer.observe(this);
       }
     }
-    updateVariant() {
+    updateVariant(event) {
       const option = this.selector?.selectedOptions[0];
       if (!option) return;
+      if (event && option.dataset.mediaId) {
+        this.closest('.rs-hero')?.querySelector('roselle-gallery')?.showMedia(option.dataset.mediaId);
+      }
       this.querySelector('[data-price]').textContent = option.dataset.price;
       const compare = this.querySelector('[data-compare]');
       compare.textContent = option.dataset.compare;
@@ -42,6 +45,71 @@ if (!customElements.get('roselle-purchase')) {
       this.controller?.abort();
       this.observer?.disconnect();
       document.body.classList.remove('rs-has-sticky');
+    }
+  });
+}
+
+/* Hero gallery: native CSS scroll-snap does the swiping; this only syncs dots/thumbnails and handles clicks. */
+if (!customElements.get('roselle-gallery')) {
+  customElements.define('roselle-gallery', class extends HTMLElement {
+    connectedCallback() {
+      this.controller = new AbortController();
+      const { signal } = this.controller;
+      this.track = this.querySelector('[data-gallery-track]');
+      this.slides = [...this.querySelectorAll('[data-gallery-slide]')];
+      this.controls = [...this.querySelectorAll('[data-gallery-go]')];
+      this.active = 0;
+      if (!this.track || this.slides.length < 2) return;
+
+      this.addEventListener('click', (event) => {
+        const control = event.target.closest('[data-gallery-go]');
+        if (control) this.goTo(Number(control.dataset.galleryGo));
+      }, { signal });
+
+      let frame = 0;
+      this.track.addEventListener('scroll', () => {
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(() => this.setActive(this.currentIndex()));
+      }, { passive: true, signal });
+
+      /* Theme Editor: show the block that the merchant selects. */
+      document.addEventListener('shopify:block:select', (event) => {
+        const index = this.slides.findIndex((slide) => slide.contains(event.target) || slide === event.target);
+        if (index > -1) this.goTo(index, true);
+      }, { signal });
+    }
+    currentIndex() {
+      return Math.round(Math.abs(this.track.scrollLeft) / Math.max(this.track.clientWidth, 1));
+    }
+    goTo(index, instant = false) {
+      const slide = this.slides[index];
+      if (!slide) return;
+      const reduce = instant || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const offset = slide.offsetLeft;
+      this.track.scrollTo({ left: document.dir === 'rtl' ? -Math.abs(offset) : offset, behavior: reduce ? 'auto' : 'smooth' });
+      this.setActive(index);
+    }
+    showMedia(mediaId) {
+      const index = this.slides.findIndex((slide) => slide.dataset.mediaId === String(mediaId));
+      if (index > -1) this.goTo(index);
+    }
+    setActive(index) {
+      if (index === this.active) return;
+      this.active = index;
+      for (const control of this.controls) {
+        const isActive = Number(control.dataset.galleryGo) === index;
+        if (isActive) control.setAttribute('aria-current', 'true');
+        else control.removeAttribute('aria-current');
+        if (isActive && control.classList.contains('rs-gallery-thumb') && control.offsetParent) {
+          control.parentElement.scrollTo({ left: control.offsetLeft - 8, behavior: 'smooth' });
+        }
+      }
+      this.slides.forEach((slide, i) => {
+        if (i !== index) slide.querySelector('video')?.pause();
+      });
+    }
+    disconnectedCallback() {
+      this.controller?.abort();
     }
   });
 }

@@ -18,7 +18,7 @@ La identidad es original: tipografía serif editorial, crema cálido, rosa empol
 
 - `templates/index.json`: portada con once instancias de contenido. `roselle-story` se reutiliza para problema, solución y textura.
 - `sections/roselle-header.liquid` y `roselle-footer.liquid`: encabezado y pie globales. El encabezado reutiliza `header-actions` de Horizon para carrito, contador y panel nativos.
-- `sections/roselle-hero.liquid`: presentación, producto seleccionado y barra de compra mobile.
+- `sections/roselle-hero.liquid`: galería (medios del producto + bloques "Imagen de la galería"), presentación, compra y barra fija mobile. La galería usa CSS scroll-snap; `roselle.js` solo sincroniza puntos/miniaturas, clics y la imagen de la variante elegida.
 - `sections/roselle-benefits.liquid`, `roselle-story.liquid`, `roselle-ingredients.liquid`, `roselle-routine.liquid`, `roselle-reviews.liquid`, `roselle-trust.liquid`, `roselle-faq.liquid`, `roselle-closing.liquid`: contenido editable con bloques donde corresponde.
 - `snippets/roselle-media.liquid`: imágenes responsive y placeholders CSS sin archivos inventados.
 - `snippets/roselle-purchase.liquid`: formulario `form 'product'`, variantes, cantidad y precio formateado por Shopify.
@@ -45,7 +45,7 @@ Se mantienen las plantillas de producto, carrito y checkout de Horizon. El formu
 ## Imágenes pendientes
 
 - Logo: SVG o PNG transparente, aproximadamente 360 px de ancho o más.
-- Producto principal: foto real, idealmente 1600 × 1800 px, fondo limpio. Se puede seleccionar en Presentación; si se omite, usa la imagen destacada del producto.
+- Galería del hero: por defecto muestra los medios del producto (orden definido en el admin del producto). En Presentación se suman bloques "Imagen de la galería" con texto alternativo propio, antes o después de esos medios. Idealmente 1600 × 2000 px (4:5), fondo limpio.
 - Problema/uso: fotos propias de cuidado corporal o aplicación, aproximadamente 1400 × 1200 px; para Modo de uso, una imagen vertical de 1200 × 1400 px.
 - Solución y cierre: fotografías adicionales de producto. El cierre puede reutilizar la imagen destacada.
 - Ingredientes: hasta cinco imágenes propias, una por bloque. Cafeína tiene mayor superficie visible.
