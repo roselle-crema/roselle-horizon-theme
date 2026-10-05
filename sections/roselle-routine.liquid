@@ -11,8 +11,8 @@
 <p>{{ block.settings.text | escape }}</p>
 </div>
 </li>{% endfor %}</ol>
-<p class="rs-zones">{{ section.settings.zones | escape }}</p>
-<p class="rs-note">{{ section.settings.note | escape }}</p>
+{% if section.settings.zones != blank %}<p class="rs-zones">{{ section.settings.zones | escape }}</p>{% endif %}
+{% if section.settings.note != blank %}<p class="rs-note">{{ section.settings.note | escape }}</p>{% endif %}
 </div>
 <div class="rs-routine-media">{% render 'roselle-media', image: section.settings.image, kind: 'ritual', label: section.settings.image_alt %}</div>
 </div>

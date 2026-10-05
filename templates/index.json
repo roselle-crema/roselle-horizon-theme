@@ -63,11 +63,11 @@
         "eyebrow": "CREMA CORPORAL ANTICELULITIS · 200 ML",
         "heading": "Más suave. Más lisa.",
         "heading_accent": "Más vos.",
-        "body": "<p>Crema Corporal Anticelulitis Reafirmante. Ayuda a mejorar la apariencia de la piel de naranja, mientras hidrata y acompaña una piel de aspecto más firme y uniforme.</p>",
-        "actives": "Con Cafeína, PDRN, Ácido Hialurónico, Centella Asiática y Vitamina E.",
+        "body": "<p>Ayuda a mejorar la apariencia de la piel de naranja mientras hidrata y suaviza.</p>",
+        "actives": "Cafeína + PDRN + Ácido Hialurónico + Centella + Vitamina E",
         "cta": "QUIERO PROBAR ROSELLE",
         "note": "Pago seguro · Envío calculado al finalizar la compra",
-        "secondary_cta": "Conocé la fórmula",
+        "secondary_cta": "",
         "sticky": true,
         "sticky_title": "Roselle · 200 ml",
         "sticky_cta": "AGREGAR"
@@ -79,29 +79,29 @@
         "b1": {
           "type": "benefit",
           "settings": {
-            "title": "Piel de aspecto más liso",
-            "text": "Ayuda a mejorar la apariencia de la piel de naranja."
+            "title": "Apariencia más lisa",
+            "text": "Ayuda a mejorar visualmente la piel de naranja."
           }
         },
         "b2": {
           "type": "benefit",
           "settings": {
-            "title": "Textura más uniforme",
-            "text": "Un cuidado para mejorar visualmente la textura."
+            "title": "Textura uniforme",
+            "text": "Para una piel de aspecto más parejo."
           }
         },
         "b3": {
           "type": "benefit",
           "settings": {
-            "title": "Hidratación y suavidad",
-            "text": "Piel hidratada, suave y cuidada al tacto."
+            "title": "Hidratación + suavidad",
+            "text": "Piel hidratada y suave al tacto."
           }
         },
         "b4": {
           "type": "benefit",
           "settings": {
             "title": "Apariencia más firme",
-            "text": "Acompaña un aspecto más firme y uniforme."
+            "text": "Acompaña una piel visualmente más firme."
           }
         }
       },
@@ -147,8 +147,8 @@
       ],
       "settings": {
         "eyebrow": "TEXTURA Y APARIENCIA",
-        "heading": "Una piel que se ve diferente",
-        "subheading": "Compará visualmente la apariencia de la textura, suavidad y uniformidad de la piel.",
+        "heading": "Mirá la diferencia",
+        "subheading": "Compará visualmente la textura y apariencia de la piel.",
         "layout": "side",
         "aspect_ratio": "4-5",
         "columns_desktop": "2",
@@ -165,11 +165,11 @@
       "settings": {
         "eyebrow": "TU PIEL, SIN EXIGENCIAS",
         "heading": "La textura es parte de tu piel. Cuidarla también.",
-        "body": "<p>La piel de naranja y la textura irregular pueden formar parte de tu cuerpo. Si querés mejorar su apariencia, podés empezar por un cuidado simple, pensado para acompañarte.</p>",
+        "body": "<p>La piel de naranja es normal. Si querés mejorar su apariencia, empezá por un cuidado simple.</p>",
         "image": "shopify://shop_images/f3e72005-9d2f-43e0-816f-8d4fd00f528f.png",
         "image_alt": "Un momento de cuidado corporal",
         "media_kind": "ritual",
-        "detail": "Un momento para vos. Sin promesas imposibles.",
+        "detail": "",
         "cta": "",
         "reverse": false,
         "tone": "cream"
@@ -179,12 +179,12 @@
       "type": "roselle-story",
       "settings": {
         "eyebrow": "CONOCÉ ROSELLE",
-        "heading": "El cuidado del rostro, ahora en tu ritual corporal.",
-        "body": "<p>Tu cuerpo también merece un momento de atención. Roselle reúne cinco activos en una crema corporal que ayuda a hidratar, suavizar y mejorar la apariencia de la textura.</p>",
+        "heading": "Cinco activos. Un solo ritual.",
+        "body": "<p>Una crema corporal para hidratar, suavizar y mejorar visualmente la textura de la piel.</p>",
         "image": "shopify://shop_images/c5d72718-2ba4-48f3-85b9-e7172fe1da3c.png",
         "image_alt": "Roselle Crema Corporal Anticelulitis Reafirmante",
         "media_kind": "product",
-        "detail": "Una crema. Un masaje. Una rutina que podés hacer tuya.",
+        "detail": "",
         "cta": "QUIERO PROBAR ROSELLE",
         "reverse": true,
         "tone": "rose"
@@ -274,22 +274,22 @@
         "b1": {
           "type": "step",
           "settings": {
-            "title": "Aplicá una pequeña cantidad",
-            "text": "Distribuí la crema sobre la piel limpia y seca de la zona que quieras cuidar."
+            "title": "Aplicá",
+            "text": "Sobre la piel limpia y seca."
           }
         },
         "b2": {
           "type": "step",
           "settings": {
-            "title": "Masajeá con suavidad",
-            "text": "Realizá movimientos suaves hasta que la crema se absorba."
+            "title": "Masajeá",
+            "text": "Con movimientos suaves hasta absorber."
           }
         },
         "b3": {
           "type": "step",
           "settings": {
-            "title": "Hacé tuyo el momento",
-            "text": "Sumala a tu rutina siguiendo las indicaciones del envase."
+            "title": "Sumala a tu rutina",
+            "text": "Usala según las indicaciones del envase."
           }
         }
       },
@@ -304,19 +304,19 @@
         "image": "shopify://shop_images/da5b8a4b-816e-46d9-bf85-d1bdc199394c.png",
         "image_alt": "Aplicación de Roselle con masaje corporal",
         "zones": "PIERNAS · BRAZOS · PECHO · CUELLO",
-        "note": "Seguí las indicaciones de frecuencia y las precauciones del envase."
+        "note": ""
       }
     },
     "texture": {
       "type": "roselle-story",
       "settings": {
         "eyebrow": "EL PLACER DE LO SIMPLE",
-        "heading": "Textura blanca. Un momento de calma.",
-        "body": "<p>Una crema blanca para distribuir con un masaje suave. Un gesto sencillo que podés sumar a tu momento de cuidado corporal.</p>",
+        "heading": "Textura blanca. Suave al aplicar.",
+        "body": "<p>Una crema corporal fácil de distribuir y masajear.</p>",
         "image": "shopify://shop_images/b9a66c89-1bd7-4900-9301-b98579b90ece.png",
         "image_alt": "Textura blanca de la crema Roselle",
         "media_kind": "texture",
-        "detail": "La cantidad y el masaje hacen parte de la experiencia.",
+        "detail": "",
         "cta": "SUMAR A MI RUTINA",
         "reverse": true,
         "tone": "light"
@@ -371,7 +371,7 @@
           "settings": {
             "icon": "support",
             "title": "Envíos a toda Argentina",
-            "text": "Consultá el costo y las opciones para tu dirección al comprar.",
+            "text": "Calculá tu envío al comprar.",
             "link": "",
             "link_label": "Más información"
           }
@@ -381,7 +381,7 @@
           "settings": {
             "icon": "payment",
             "title": "Pago seguro",
-            "text": "Completá tu compra desde el checkout de nuestra tienda.",
+            "text": "Compra protegida desde Shopify.",
             "link": "",
             "link_label": "Más información"
           }
@@ -391,7 +391,7 @@
           "settings": {
             "icon": "support",
             "title": "Atención al cliente",
-            "text": "Encontrá los canales de atención en la información de contacto.",
+            "text": "Estamos para ayudarte.",
             "link": "",
             "link_label": "Más información"
           }
@@ -411,49 +411,49 @@
           "type": "question",
           "settings": {
             "question": "¿Cómo se usa Roselle?",
-            "answer": "<p>Aplicá una pequeña cantidad sobre la piel limpia y seca. Masajeá suavemente hasta su absorción y seguí las indicaciones del envase.</p>"
+            "answer": "<p>Aplicá una pequeña cantidad sobre la piel limpia y seca, y masajeá hasta absorber.</p>"
           }
         },
         "b2": {
           "type": "question",
           "settings": {
             "question": "¿En qué zonas se puede aplicar?",
-            "answer": "<p>Podés incorporarla al cuidado corporal de piernas, brazos, pecho y cuello. Respetá siempre las precauciones indicadas en el envase.</p>"
+            "answer": "<p>Piernas, brazos, pecho y cuello. Respetá las precauciones del envase.</p>"
           }
         },
         "b3": {
           "type": "question",
           "settings": {
             "question": "¿Cuánto trae?",
-            "answer": "<p>Cada envase contiene 200 ml de Crema Corporal Anticelulitis Reafirmante.</p>"
+            "answer": "<p>Cada envase trae 200 ml.</p>"
           }
         },
         "b4": {
           "type": "question",
           "settings": {
             "question": "¿Con qué frecuencia se recomienda usarla?",
-            "answer": "<p>Seguí la frecuencia indicada en el envase del producto. Elegí un momento de tu rutina que te resulte fácil de sostener.</p>"
+            "answer": "<p>Seguí la frecuencia indicada en el envase.</p>"
           }
         },
         "b5": {
           "type": "question",
           "settings": {
             "question": "¿Cuánto tarda en absorberse?",
-            "answer": "<p>El tiempo puede variar según la cantidad aplicada, la zona y tu piel. Empezá con una pequeña cantidad y masajeá hasta que se absorba.</p>"
+            "answer": "<p>Depende de la cantidad y la zona. Empezá con poco y masajeá hasta absorber.</p>"
           }
         },
         "b6": {
           "type": "question",
           "settings": {
             "question": "¿Realizan envíos a todo el país?",
-            "answer": "<p>Realizamos envíos a Argentina. Ingresá tu dirección en el checkout para consultar las opciones disponibles, el costo y los plazos para tu zona.</p>"
+            "answer": "<p>Sí, enviamos a toda Argentina. Calculá costo y plazo en el checkout.</p>"
           }
         },
         "b7": {
           "type": "question",
           "settings": {
             "question": "¿Qué puedo esperar de Roselle?",
-            "answer": "<p>Es un producto cosmético que ayuda a mejorar la apariencia de la celulitis y a que la piel se vea más lisa, hidratada y cuidada. La experiencia puede variar según cada persona; no se prometen resultados ni plazos garantizados.</p>"
+            "answer": "<p>Ayuda a mejorar la apariencia de la celulitis y a que la piel se vea más lisa e hidratada. Es un cosmético: la experiencia varía según cada persona.</p>"
           }
         }
       },
@@ -468,15 +468,15 @@
       ],
       "settings": {
         "eyebrow": "ANTES DE EMPEZAR",
-        "heading": "¿ Alguna Pregunta?"
+        "heading": "¿Alguna pregunta?"
       }
     },
     "closing": {
       "type": "roselle-closing",
       "settings": {
         "eyebrow": "TU CUERPO. TU MOMENTO.",
-        "heading": "Sumá Roselle a tu rutina corporal.",
-        "body": "<p>Un cuidado simple para ayudar a que tu piel se vea más lisa, hidratada y cuidada.</p>",
+        "heading": "Sumá Roselle a tu rutina.",
+        "body": "<p>Cuidado corporal para una piel de apariencia más lisa, suave y cuidada.</p>",
         "image": "shopify://shop_images/58762f5d-e5d7-4fe4-a7af-10b63f091237.png",
         "image_alt": "Roselle Crema Corporal de 200 ml",
         "cta": "PEDIR MI ROSELLE",
