@@ -73,6 +73,49 @@
         "sticky_cta": "AGREGAR"
       }
     },
+    "reviews": {
+      "type": "roselle-reviews",
+      "blocks": {
+        "b1": {
+          "type": "review",
+          "settings": {
+            "placeholder": true,
+            "help": "",
+            "quote": "",
+            "author": "",
+            "image": "shopify://shop_images/35d77d2d-17c0-4d3e-96be-dcfce28b1a16.png"
+          }
+        },
+        "b2": {
+          "type": "review",
+          "settings": {
+            "placeholder": true,
+            "help": "",
+            "quote": "",
+            "author": ""
+          }
+        },
+        "b3": {
+          "type": "review",
+          "settings": {
+            "placeholder": true,
+            "help": "",
+            "quote": "",
+            "author": ""
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ],
+      "settings": {
+        "eyebrow": "EXPERIENCIAS ROSELLE",
+        "heading": "El cuidado también se comparte.",
+        "editor_hint": ""
+      }
+    },
     "benefits": {
       "type": "roselle-benefits",
       "blocks": {
@@ -320,47 +363,6 @@
         "cta": "SUMAR A MI RUTINA",
         "reverse": true,
         "tone": "light"
-      }
-    },
-    "reviews": {
-      "type": "roselle-reviews",
-      "blocks": {
-        "b1": {
-          "type": "review",
-          "settings": {
-            "placeholder": true,
-            "help": "",
-            "quote": "",
-            "author": ""
-          }
-        },
-        "b2": {
-          "type": "review",
-          "settings": {
-            "placeholder": true,
-            "help": "",
-            "quote": "",
-            "author": ""
-          }
-        },
-        "b3": {
-          "type": "review",
-          "settings": {
-            "placeholder": true,
-            "help": "",
-            "quote": "",
-            "author": ""
-          }
-        }
-      },
-      "block_order": [
-        "b1",
-        "b2",
-        "b3"
-      ],
-      "settings": {
-        "eyebrow": "EXPERIENCIAS ROSELLE",
-        "heading": "El cuidado también se comparte."
       }
     },
     "trust": {
