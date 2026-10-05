@@ -1,24 +1,97 @@
-<div id="roselle-ingredientes" class="rs-ingredients rs-wrap">
-<div class="rs-section-heading">
-<p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>
-<h2>{{ section.settings.heading | escape }}</h2>{% if section.settings.body != blank %}<div class="rs-prose">{{ section.settings.body }}</div>{% endif %}</div>
-<div class="rs-ingredients-grid">{% for block in section.blocks %}<article class="rs-ingredient {% if forloop.first %}rs-ingredient--lead{% endif %}" {{ block.shopify_attributes }}>
-<div class="rs-ingredient-media">{% render 'roselle-media', image: block.settings.image, kind: 'ingredient', label: block.settings.title %}</div>
-<div class="rs-ingredient-copy">
-<span class="rs-eyebrow">{{ block.settings.label | escape }}</span>
-<h3>{{ block.settings.title | escape }}</h3>
-<p>{{ block.settings.text | escape }}</p>
-<span class="rs-ingredient-benefit">{{ block.settings.benefit | escape }}</span>
-</div>
-</article>{% endfor %}</div>
-<p class="rs-note">{{ section.settings.note | escape }}</p>
+{%- liquid
+  assign ratio_w = section.settings.image_ratio | split: '-' | first
+  assign ratio_h = section.settings.image_ratio | split: '-' | last
+-%}
+<div id="roselle-ingredientes" class="rs-ing rs-tone-{{ section.settings.tone }}">
+  <roselle-carousel
+    class="rs-wrap rs-ing-inner"
+    style="--rs-ing-rw: {{ ratio_w }}; --rs-ing-rh: {{ ratio_h }};"
+  >
+    <div class="rs-ing-head">
+      <div class="rs-section-heading">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2>{{ section.settings.heading | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.body != blank -%}
+          <div class="rs-prose">{{ section.settings.body }}</div>
+        {%- endif -%}
+      </div>
+      {%- if section.blocks.size > 1 -%}
+        <div class="rs-ing-arrows">
+          <button type="button" class="rs-ing-arrow" data-carousel-prev aria-label="{{ section.settings.prev_label | escape }}" disabled>
+            <span aria-hidden="true">←</span>
+          </button>
+          <button type="button" class="rs-ing-arrow" data-carousel-next aria-label="{{ section.settings.next_label | escape }}">
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <ul class="rs-ing-track" data-carousel-track role="list" tabindex="0" aria-label="{{ section.settings.heading | escape }}">
+      {%- for block in section.blocks -%}
+        <li class="rs-ing-card{% if block.settings.featured %} rs-ing-card--featured{% endif %}" data-carousel-item {{ block.shopify_attributes }}>
+          <div class="rs-ing-media">
+            {%- if block.settings.image != blank -%}
+              {%- assign image_alt = block.settings.image.alt | default: block.settings.title -%}
+              {{ block.settings.image | image_url: width: 1000 | image_tag: widths: '300, 450, 600, 800, 1000', sizes: '(min-width: 990px) 440px, (min-width: 750px) 45vw, 86vw', loading: 'lazy', alt: image_alt, class: 'rs-ing-image' }}
+            {%- else -%}
+              {% render 'roselle-media', kind: 'ingredient', label: block.settings.title %}
+            {%- endif -%}
+          </div>
+          <div class="rs-ing-copy">
+            {%- if block.settings.label != blank -%}
+              <span class="rs-ing-label">{{ block.settings.label | escape }}</span>
+            {%- endif -%}
+            {%- if block.settings.title != blank -%}
+              <h3 class="rs-ing-title">{{ block.settings.title | escape }}</h3>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <p class="rs-ing-text">{{ block.settings.text | escape }}</p>
+            {%- endif -%}
+            {%- if block.settings.benefit != blank -%}
+              <p class="rs-ing-benefit">{{ block.settings.benefit | escape }}</p>
+            {%- endif -%}
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    {%- if section.settings.show_dots and section.blocks.size > 1 -%}
+      <div class="rs-ing-dots">
+        {%- for block in section.blocks -%}
+          <button
+            type="button"
+            class="rs-ing-dot"
+            data-carousel-go="{{ forloop.index0 }}"
+            aria-label="{{ block.settings.title | default: forloop.index | escape }}"
+            {% if forloop.first %}aria-current="true"{% endif %}
+          ></button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.note != blank -%}
+      <p class="rs-note rs-ing-note">{{ section.settings.note | escape }}</p>
+    {%- endif -%}
+  </roselle-carousel>
 </div>
 
 {% schema %}
 {
   "name": "Roselle · Ingredientes",
   "tag": "section",
+  "class": "roselle-section",
+  "limit": 1,
+  "max_blocks": 8,
   "settings": [
+    {
+      "type": "header",
+      "content": "Encabezado"
+    },
     {
       "type": "text",
       "id": "eyebrow",
@@ -42,29 +115,97 @@
       "id": "note",
       "label": "Nota",
       "default": "Los beneficios se refieren al cuidado cosmético de la piel. La experiencia puede variar según cada persona."
+    },
+    {
+      "type": "header",
+      "content": "Carrusel"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Proporción de las imágenes",
+      "options": [
+        {
+          "value": "4-5",
+          "label": "Vertical (4:5)"
+        },
+        {
+          "value": "1-1",
+          "label": "Cuadrada (1:1)"
+        },
+        {
+          "value": "4-3",
+          "label": "Horizontal (4:3)"
+        }
+      ],
+      "default": "1-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "Mostrar indicadores en mobile",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "Fondo",
+      "options": [
+        {
+          "value": "cream",
+          "label": "Crema"
+        },
+        {
+          "value": "rose",
+          "label": "Rosa suave"
+        },
+        {
+          "value": "light",
+          "label": "Blanco roto"
+        }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "text",
+      "id": "prev_label",
+      "label": "Nombre accesible flecha anterior",
+      "default": "Ingrediente anterior"
+    },
+    {
+      "type": "text",
+      "id": "next_label",
+      "label": "Nombre accesible flecha siguiente",
+      "default": "Ingrediente siguiente"
     }
   ],
-  "max_blocks": 5,
-  "class": "roselle-section",
   "blocks": [
     {
       "type": "ingredient",
       "name": "Ingrediente",
       "settings": [
         {
-          "type": "text",
-          "id": "title",
-          "label": "Nombre"
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen",
+          "info": "El texto alternativo se edita en la imagen; si está vacío se usa el nombre."
+        },
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Destacar como activo protagonista",
+          "info": "Tarjeta más grande con fondo bordó.",
+          "default": false
         },
         {
           "type": "text",
           "id": "label",
-          "label": "Antetítulo"
+          "label": "Antetítulo / categoría"
         },
         {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Imagen"
+          "type": "text",
+          "id": "title",
+          "label": "Nombre"
         },
         {
           "type": "text",
@@ -74,11 +215,16 @@
         {
           "type": "text",
           "id": "benefit",
-          "label": "Beneficio"
+          "label": "Beneficio destacado"
         }
       ]
     }
   ],
+  "enabled_on": {
+    "templates": [
+      "index"
+    ]
+  },
   "presets": [
     {
       "name": "Roselle · Ingredientes",
@@ -86,8 +232,9 @@
         {
           "type": "ingredient",
           "settings": {
+            "featured": true,
             "title": "Cafeína",
-            "label": "EL ACTIVO PROTAGONISTA",
+            "label": "ACTIVO PROTAGONISTA",
             "text": "Un activo de cuidado corporal que acompaña una piel de aspecto más liso y ayuda a mejorar la apariencia de la celulitis.",
             "benefit": "TEXTURA Y APARIENCIA"
           }
@@ -130,12 +277,6 @@
         }
       ]
     }
-  ],
-  "enabled_on": {
-    "templates": [
-      "index"
-    ]
-  },
-  "limit": 1
+  ]
 }
 {% endschema %}

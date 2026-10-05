@@ -49,7 +49,7 @@ Se mantienen las plantillas de producto, carrito y checkout de Horizon. El formu
 - Galería del hero: por defecto muestra los medios del producto (orden definido en el admin del producto). En Presentación se suman bloques "Imagen de la galería" con texto alternativo propio, antes o después de esos medios. Idealmente 1600 × 2000 px (4:5), fondo limpio.
 - Problema/uso: fotos propias de cuidado corporal o aplicación, aproximadamente 1400 × 1200 px; para Modo de uso, una imagen vertical de 1200 × 1400 px.
 - Solución y cierre: fotografías adicionales de producto. El cierre puede reutilizar la imagen destacada.
-- Ingredientes: hasta cinco imágenes propias, una por bloque. Cafeína tiene mayor superficie visible.
+- Ingredientes: una imagen por bloque (Cafeína, PDRN, Ácido Hialurónico, Centella Asiática, Vitamina E), cuadrada por defecto (1200 × 1200 px). El carrusel recorta todas igual; la tarjeta con "Destacar como activo protagonista" es más ancha y con fondo bordó.
 - Textura: macro real de la crema blanca, aproximadamente 1400 × 1200 px.
 - Antes/Después: un par de imágenes por comparación, tomadas con el mismo encuadre, luz y distancia. Ambas se recortan a la misma proporción (4:5 por defecto); usar el punto focal de Shopify para centrar la zona. Son imágenes de referencia: no agregar porcentajes, plazos ni resultados.
 - Reseñas: fotos autorizadas opcionales. No se incluyen imágenes ni reseñas de terceros.
