@@ -1,0 +1,75 @@
+<div class="rs-benefits">
+<div class="rs-wrap rs-benefits-grid">{% for block in section.blocks %}<div class="rs-benefit" {{ block.shopify_attributes }}>
+<span class="rs-benefit-number" aria-hidden="true">0{{ forloop.index }}</span>
+<h2>{{ block.settings.title | escape }}</h2>
+<p>{{ block.settings.text | escape }}</p>
+</div>{% endfor %}</div>
+</div>
+{% schema %}
+{
+  "name": "Roselle · Beneficios",
+  "tag": "section",
+  "settings": [],
+  "max_blocks": 4,
+  "class": "roselle-section",
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Beneficio",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Explicación"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Roselle · Beneficios",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Piel de aspecto más liso",
+            "text": "Ayuda a mejorar la apariencia de la piel de naranja."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Textura más uniforme",
+            "text": "Un cuidado para mejorar visualmente la textura."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Hidratación y suavidad",
+            "text": "Piel hidratada, suave y cuidada al tacto."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Apariencia más firme",
+            "text": "Acompaña un aspecto más firme y uniforme."
+          }
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index"
+    ]
+  },
+  "limit": 1
+}
+{% endschema %}

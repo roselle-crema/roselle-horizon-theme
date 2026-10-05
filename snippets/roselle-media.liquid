@@ -1,0 +1,41 @@
+{% doc %}
+  Responsive media with an explicit illustration when no merchant image exists.
+  @param {object} [image] - Merchant image.
+  @param {string} [kind] - product, ritual, texture or ingredient.
+  @param {string} [label] - Accessible description.
+  @param {boolean} [priority] - Load hero eagerly.
+{% enddoc %}
+{% if image != blank %}
+  {% assign loading = 'lazy' %}{% assign priority_hint = 'auto' %}
+  {% if priority %}{% assign loading = 'eager' %}{% assign priority_hint = 'high' %}{% endif %}
+  {{ image | image_url: width: 1600 | image_tag: widths: '320, 480, 640, 900, 1200, 1600', sizes: '(min-width: 900px) 50vw, 100vw', loading: loading, fetchpriority: priority_hint, alt: label, class: 'rs-image' }}
+{% else %}
+  <div class="rs-placeholder rs-placeholder--{{ kind | default: 'product' }}" role="img" aria-label="{{ label | escape }} — ilustración de referencia">
+    <span class="rs-orbit rs-orbit--one" aria-hidden="true">
+</span>
+<span class="rs-orbit rs-orbit--two" aria-hidden="true">
+</span>
+    {% case kind %}
+      {% when 'texture' %}<span class="rs-cream" aria-hidden="true">
+</span>
+      {% when 'ritual' %}<span class="rs-ritual-shape" aria-hidden="true">
+</span>
+<span class="rs-ritual-line" aria-hidden="true">
+</span>
+      {% when 'ingredient' %}<span class="rs-ingredient-shape" aria-hidden="true">
+</span>
+      {% else %}<div class="rs-jar" aria-hidden="true">
+<div class="rs-jar-lid">
+</div>
+<div class="rs-jar-body">
+<span class="rs-jar-brand">Roselle</span>
+<span class="rs-jar-rule">
+</span>
+<span class="rs-jar-name">CREMA CORPORAL<br>ANTICELULITIS<br>REAFIRMANTE</span>
+<span class="rs-jar-volume">200 ml</span>
+</div>
+</div>
+    {% endcase %}
+    <span class="rs-placeholder-caption">{{ settings.roselle_ui_placeholder | escape }}</span>
+  </div>
+{% endif %}

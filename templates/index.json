@@ -1,282 +1,315 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "hero_jVaWmY": {
-      "type": "hero",
+    "hero": {
+      "type": "roselle-hero",
+      "settings": {}
+    },
+    "benefits": {
+      "type": "roselle-benefits",
+      "settings": {},
       "blocks": {
-        "text_YLPk4p": {
-          "type": "text",
-          "name": "t:names.heading",
+        "b1": {
+          "type": "benefit",
           "settings": {
-            "text": "<p>Browse our latest products</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "{{ settings.color_palette.background }}",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "title": "Piel de aspecto más liso",
+            "text": "Ayuda a mejorar la apariencia de la piel de naranja."
+          }
         },
-        "button_H9gpTf": {
-          "type": "button",
-          "name": "t:names.button",
+        "b2": {
+          "type": "benefit",
           "settings": {
-            "label": "Shop all",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button-custom",
-            "custom_button_background": "rgba(0, 0, 0, 0)",
-            "custom_button_text": "{{ settings.color_palette.background }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
+            "title": "Textura más uniforme",
+            "text": "Un cuidado para mejorar visualmente la textura."
+          }
+        },
+        "b3": {
+          "type": "benefit",
+          "settings": {
+            "title": "Hidratación y suavidad",
+            "text": "Piel hidratada, suave y cuidada al tacto."
+          }
+        },
+        "b4": {
+          "type": "benefit",
+          "settings": {
+            "title": "Apariencia más firme",
+            "text": "Acompaña un aspecto más firme y uniforme."
+          }
         }
       },
       "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
-      ],
-      "name": "t:names.hero",
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
+    },
+    "problem": {
+      "type": "roselle-story",
+      "settings": {}
+    },
+    "solution": {
+      "type": "roselle-story",
       "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "link": "",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
-        "overlay_style": "solid",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
+        "eyebrow": "CONOCÉ ROSELLE",
+        "heading": "El cuidado del rostro, ahora en tu ritual corporal.",
+        "body": "<p>Tu cuerpo también merece un momento de atención. Roselle reúne cinco activos en una crema corporal que ayuda a hidratar, suavizar y mejorar la apariencia de la textura.</p>",
+        "detail": "Una crema. Un masaje. Una rutina que podés hacer tuya.",
+        "cta": "QUIERO PROBAR ROSELLE",
+        "reverse": true,
+        "tone": "rose",
+        "media_kind": "product",
+        "image_alt": "Roselle Crema Corporal Anticelulitis Reafirmante"
       }
     },
-    "product_list_fa6P9H": {
-      "type": "product-list",
+    "ingredients": {
+      "type": "roselle-ingredients",
+      "settings": {},
       "blocks": {
-        "static-header": {
-          "type": "_product-list-content",
-          "name": "t:names.header",
-          "static": true,
+        "b1": {
+          "type": "ingredient",
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_list_text_YFtzcL": {
-              "type": "_product-list-text",
-              "name": "t:names.collection_title",
-              "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h4",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_list_button_MWeP9V": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "View all",
-                "open_in_new_tab": false,
-                "style_class": "button-unstyled",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_list_text_YFtzcL",
-            "product_list_button_MWeP9V"
-          ]
+            "title": "Cafeína",
+            "label": "EL ACTIVO PROTAGONISTA",
+            "text": "Un activo de cuidado corporal que acompaña una piel de aspecto más liso y ayuda a mejorar la apariencia de la celulitis.",
+            "benefit": "TEXTURA Y APARIENCIA"
+          }
         },
-        "static-product-card": {
-          "type": "_product-card",
-          "name": "t:names.product_card",
-          "static": true,
+        "b2": {
+          "type": "ingredient",
           "settings": {
-            "product_card_gap": 4,
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_card_gallery_677WP3": {
-              "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
-              "settings": {
-                "image_ratio": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_title_YXxMTj": {
-              "type": "product-title",
-              "name": "t:names.product_title",
-              "settings": {
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "paragraph",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "price_JQzVV4": {
-              "type": "price",
-              "name": "t:names.product_price",
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_card_gallery_677WP3",
-            "product_title_YXxMTj",
-            "price_JQzVV4"
-          ]
+            "title": "PDRN",
+            "label": "CUIDADO COMPLEMENTARIO",
+            "text": "Integra la fórmula para acompañar el acondicionamiento cosmético y una piel de aspecto cuidado.",
+            "benefit": "PIEL ACONDICIONADA"
+          }
+        },
+        "b3": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Ácido Hialurónico",
+            "label": "HIDRATACIÓN",
+            "text": "Un ingrediente humectante que ayuda a conservar la hidratación y aporta una sensación de suavidad.",
+            "benefit": "HIDRATACIÓN Y SUAVIDAD"
+          }
+        },
+        "b4": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Centella Asiática",
+            "label": "CUIDADO BOTÁNICO",
+            "text": "Complementa el cuidado de la textura para una piel visualmente más uniforme.",
+            "benefit": "APARIENCIA UNIFORME"
+          }
+        },
+        "b5": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Vitamina E",
+            "label": "SUAVIDAD",
+            "text": "Un ingrediente antioxidante que complementa el cuidado cosmético y ayuda a mantener la piel suave.",
+            "benefit": "CUIDADO Y CONFORT"
+          }
         }
       },
-      "name": "t:names.featured_collection",
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5"
+      ]
+    },
+    "routine": {
+      "type": "roselle-routine",
+      "settings": {},
+      "blocks": {
+        "b1": {
+          "type": "step",
+          "settings": {
+            "title": "Aplicá una pequeña cantidad",
+            "text": "Distribuí la crema sobre la piel limpia y seca de la zona que quieras cuidar."
+          }
+        },
+        "b2": {
+          "type": "step",
+          "settings": {
+            "title": "Masajeá con suavidad",
+            "text": "Realizá movimientos suaves hasta que la crema se absorba."
+          }
+        },
+        "b3": {
+          "type": "step",
+          "settings": {
+            "title": "Hacé tuyo el momento",
+            "text": "Sumala a tu rutina siguiendo las indicaciones del envase."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ]
+    },
+    "texture": {
+      "type": "roselle-story",
       "settings": {
-        "collection": "all",
-        "layout_type": "grid",
-        "carousel_on_mobile": false,
-        "max_products": 8,
-        "columns": 4,
-        "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 8,
-        "rows_gap": 24,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
-        "gap": 28,
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "eyebrow": "EL PLACER DE LO SIMPLE",
+        "heading": "Textura blanca. Un momento de calma.",
+        "body": "<p>Una crema blanca para distribuir con un masaje suave. Un gesto sencillo que podés sumar a tu momento de cuidado corporal.</p>",
+        "detail": "La cantidad y el masaje hacen parte de la experiencia.",
+        "tone": "light",
+        "media_kind": "texture",
+        "image_alt": "Textura blanca de la crema Roselle",
+        "cta": "SUMAR A MI RUTINA",
+        "reverse": true
       }
+    },
+    "reviews": {
+      "type": "roselle-reviews",
+      "settings": {},
+      "blocks": {
+        "b1": {
+          "type": "review",
+          "settings": {
+            "placeholder": true
+          }
+        },
+        "b2": {
+          "type": "review",
+          "settings": {
+            "placeholder": true
+          }
+        },
+        "b3": {
+          "type": "review",
+          "settings": {
+            "placeholder": true
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ]
+    },
+    "trust": {
+      "type": "roselle-trust",
+      "settings": {},
+      "blocks": {
+        "b1": {
+          "type": "trust",
+          "settings": {
+            "icon": "shipping",
+            "title": "Envíos a toda Argentina",
+            "text": "Consultá el costo y las opciones para tu dirección al comprar."
+          }
+        },
+        "b2": {
+          "type": "trust",
+          "settings": {
+            "icon": "payment",
+            "title": "Pago seguro",
+            "text": "Completá tu compra desde el checkout de nuestra tienda."
+          }
+        },
+        "b3": {
+          "type": "trust",
+          "settings": {
+            "icon": "support",
+            "title": "Atención al cliente",
+            "text": "Encontrá los canales de atención en la información de contacto."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ]
+    },
+    "faq": {
+      "type": "roselle-faq",
+      "settings": {},
+      "blocks": {
+        "b1": {
+          "type": "question",
+          "settings": {
+            "question": "¿Cómo se usa Roselle?",
+            "answer": "<p>Aplicá una pequeña cantidad sobre la piel limpia y seca. Masajeá suavemente hasta su absorción y seguí las indicaciones del envase.</p>"
+          }
+        },
+        "b2": {
+          "type": "question",
+          "settings": {
+            "question": "¿En qué zonas se puede aplicar?",
+            "answer": "<p>Podés incorporarla al cuidado corporal de piernas, brazos, pecho y cuello. Respetá siempre las precauciones indicadas en el envase.</p>"
+          }
+        },
+        "b3": {
+          "type": "question",
+          "settings": {
+            "question": "¿Cuánto trae?",
+            "answer": "<p>Cada envase contiene 200 ml de Crema Corporal Anticelulitis Reafirmante.</p>"
+          }
+        },
+        "b4": {
+          "type": "question",
+          "settings": {
+            "question": "¿Con qué frecuencia se recomienda usarla?",
+            "answer": "<p>Seguí la frecuencia indicada en el envase del producto. Elegí un momento de tu rutina que te resulte fácil de sostener.</p>"
+          }
+        },
+        "b5": {
+          "type": "question",
+          "settings": {
+            "question": "¿Cuánto tarda en absorberse?",
+            "answer": "<p>El tiempo puede variar según la cantidad aplicada, la zona y tu piel. Empezá con una pequeña cantidad y masajeá hasta que se absorba.</p>"
+          }
+        },
+        "b6": {
+          "type": "question",
+          "settings": {
+            "question": "¿Realizan envíos a todo el país?",
+            "answer": "<p>Realizamos envíos a Argentina. Ingresá tu dirección en el checkout para consultar las opciones disponibles, el costo y los plazos para tu zona.</p>"
+          }
+        },
+        "b7": {
+          "type": "question",
+          "settings": {
+            "question": "¿Qué puedo esperar de Roselle?",
+            "answer": "<p>Es un producto cosmético que ayuda a mejorar la apariencia de la celulitis y a que la piel se vea más lisa, hidratada y cuidada. La experiencia puede variar según cada persona; no se prometen resultados ni plazos garantizados.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7"
+      ]
+    },
+    "closing": {
+      "type": "roselle-closing",
+      "settings": {}
     }
   },
   "order": [
-    "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "hero",
+    "benefits",
+    "problem",
+    "solution",
+    "ingredients",
+    "routine",
+    "texture",
+    "reviews",
+    "trust",
+    "faq",
+    "closing"
   ]
 }

@@ -1,0 +1,49 @@
+{% doc %}
+  Native Shopify product form. Normal POST keeps cart and checkout server-owned.
+  @param {object} product - Selected Roselle product.
+  @param {string} form_id - Unique form id.
+  @param {string} cta - Editable button label.
+{% enddoc %}
+{% if product != blank %}
+  {% assign variant = product.selected_or_first_available_variant %}
+  {% if product.requires_selling_plan or product.variants.size >= 250 or product.quantity_price_breaks_configured? %}
+    <a class="rs-button" href="{{ product.url }}">{{ settings.roselle_ui_choose_options | escape }}</a>
+  {% else %}
+    <roselle-purchase class="rs-purchase" data-form-id="{{ form_id }}" data-available-label="{{ cta | escape }}" data-unavailable-label="{{ settings.roselle_ui_sold_out | escape }}">
+      <div class="rs-price" aria-live="polite">
+<span data-price>{{ variant.price | money_with_currency }}</span>
+<s data-compare {% unless variant.compare_at_price > variant.price %}hidden{% endunless %}>{{ variant.compare_at_price | money_with_currency }}</s>
+</div>
+      {% form 'product', product, id: form_id, class: 'rs-product-form' %}
+        {{ form.errors | default_errors }}
+        <label {% if product.has_only_default_variant %}class="rs-sr-only"{% endif %} for="Variant-{{ form_id }}">{{ settings.roselle_ui_presentation | escape }}</label>
+        <select name="id" id="Variant-{{ form_id }}" {% if product.has_only_default_variant %}class="rs-sr-only" tabindex="-1"{% endif %}>
+          {% for option in product.variants %}
+            <option value="{{ option.id }}" {% if option.id == variant.id %}selected{% endif %} {% unless option.available %}disabled{% endunless %}
+              data-price="{{ option.price | money_with_currency | escape }}" data-compare="{% if option.compare_at_price > option.price %}{{ option.compare_at_price | money_with_currency | escape }}{% endif %}"
+              data-min="{{ option.quantity_rule.min | default: 1 }}" data-max="{{ option.quantity_rule.max }}" data-step="{{ option.quantity_rule.increment | default: 1 }}">
+              {{ option.title | escape }} — {{ option.price | money_with_currency }}{% unless option.available %} — {{ settings.roselle_ui_sold_out | escape }}{% endunless %}
+            </option>
+          {% endfor %}
+        </select>
+        <div class="rs-purchase-row">
+<div class="rs-quantity">
+<label for="Quantity-{{ form_id }}">{{ settings.roselle_ui_quantity | escape }}</label>
+<input id="Quantity-{{ form_id }}" name="quantity" type="number" inputmode="numeric" value="{{ variant.quantity_rule.min | default: 1 }}" min="{{ variant.quantity_rule.min | default: 1 }}" step="{{ variant.quantity_rule.increment | default: 1 }}" {% if variant.quantity_rule.max %}max="{{ variant.quantity_rule.max }}"{% endif %} required>
+</div>
+        <button class="rs-button" type="submit" name="add" {% unless variant.available %}disabled{% endunless %}>
+<span data-add-label>{% if variant.available %}{{ cta | escape }}{% else %}{{ settings.roselle_ui_sold_out | escape }}{% endif %}</span>
+<span aria-hidden="true">↗</span>
+</button>
+</div>
+        <noscript>
+<p>{{ settings.roselle_ui_no_script | escape }}</p>
+</noscript>
+      {% endform %}
+      {% if variant.unit_price_measurement %}<p class="rs-note">{{ variant.unit_price | money }} / {{ variant.unit_price_measurement.reference_value }}{{ variant.unit_price_measurement.reference_unit }}</p>{% endif %}
+    </roselle-purchase>
+  {% endif %}
+{% else %}
+  <button class="rs-button" disabled>{{ settings.roselle_ui_coming_soon | escape }}</button>
+  {% if request.design_mode %}<p class="rs-editor-note">{{ settings.roselle_ui_select_product | escape }}</p>{% endif %}
+{% endif %}

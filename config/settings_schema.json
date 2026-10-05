@@ -2116,5 +2116,132 @@
         "default": "equal-width-buttons"
       }
     ]
+  },
+  {
+    "name": "Roselle",
+    "settings": [
+      {
+        "type": "product",
+        "id": "roselle_product",
+        "label": "Producto de la landing"
+      },
+      {
+        "type": "paragraph",
+        "content": "Seleccioná la crema Roselle. Precio, variantes e inventario se toman del catálogo de Shopify."
+      },
+      {
+        "type": "color",
+        "id": "roselle_cream",
+        "label": "Fondo crema",
+        "default": "#F7F2EC"
+      },
+      {
+        "type": "color",
+        "id": "roselle_rose",
+        "label": "Rosa suave",
+        "default": "#EEDFE0"
+      },
+      {
+        "type": "color",
+        "id": "roselle_ink",
+        "label": "Texto profundo",
+        "default": "#402D2C"
+      },
+      {
+        "type": "color",
+        "id": "roselle_burgundy",
+        "label": "Bordó y botones",
+        "default": "#622E3D"
+      }
+    ]
+  },
+  {
+    "name": "Roselle · Textos",
+    "settings": [
+      {
+        "type": "text",
+        "id": "roselle_ui_placeholder",
+        "label": "Leyenda de imágenes",
+        "default": "Ilustración de referencia · imagen pendiente"
+      },
+      {
+        "type": "text",
+        "id": "roselle_ui_navigation",
+        "label": "Nombre accesible del menú",
+        "default": "Navegación principal"
+      },
+      {
+        "type": "text",
+        "id": "roselle_ui_cart",
+        "label": "Carrito",
+        "default": "Carrito"
+      },
+      {
+        "type": "text",
+        "id": "roselle_ui_choose_options",
+        "label": "Elegir opciones",
+        "default": "ELEGIR OPCIONES"
+      },
+      {
+        "type": "text",
+        "id": "roselle_ui_presentation",
+        "label": "Presentación",
+        "default": "Presentación"
+      },
+      {
+        "type": "text",
+        "id": "roselle_ui_quantity",
+        "label": "Cantidad",
+        "default": "Cantidad"
+      },
+      {
+        "type": "text",
+        "id": "roselle_ui_sold_out",
+        "label": "Agotado",
+        "default": "Agotado"
+      },
+      {
+        "type": "text",
+        "id": "roselle_ui_coming_soon",
+        "label": "Sin producto asignado",
+        "default": "PRÓXIMAMENTE"
+      },
+      {
+        "type": "text",
+        "id": "roselle_ui_select_product",
+        "label": "Ayuda del editor",
+        "default": "Seleccioná el producto en Configuración del tema → Roselle."
+      },
+      {
+        "type": "text",
+        "id": "roselle_ui_no_script",
+        "label": "Ayuda sin JavaScript",
+        "default": "El precio de cada presentación figura en el selector. El total se confirma en el carrito."
+      },
+      {
+        "type": "text",
+        "id": "roselle_ui_review_placeholder",
+        "label": "Etiqueta de reseña pendiente",
+        "default": "PLACEHOLDER EDITABLE"
+      },
+      {
+        "type": "text",
+        "id": "roselle_ui_review_title",
+        "label": "Título de reseña pendiente",
+        "default": "Reseña de cliente"
+      },
+      {
+        "type": "text",
+        "id": "roselle_ui_review_pending",
+        "label": "Texto de reseña pendiente",
+        "default": "Espacio reservado para una experiencia real. Todavía no hay una reseña publicada."
+      },
+      {
+        "type": "text",
+        "id": "roselle_ui_footer_navigation",
+        "label": "Nombre accesible del pie",
+        "default": "Información de la tienda"
+      }
+    ]
   }
 ]

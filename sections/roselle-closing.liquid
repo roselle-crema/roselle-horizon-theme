@@ -1,0 +1,74 @@
+<div class="rs-closing">
+<div class="rs-wrap rs-split">
+<div class="rs-closing-art">{% assign closing_image = section.settings.image | default: settings.roselle_product.featured_image %}{% render 'roselle-media', image: closing_image, kind: 'product', label: section.settings.image_alt %}</div>
+<div>
+<div class="rs-section-heading">
+<p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+<h2>{{ section.settings.heading | escape }}</h2>{% if section.settings.body != blank %}<div class="rs-prose">{{ section.settings.body }}</div>{% endif %}</div>
+<a class="rs-button" href="#roselle-comprar">{{ section.settings.cta | escape }} <span aria-hidden="true">↗</span>
+</a>
+<p class="rs-note">{{ section.settings.note | escape }}</p>
+</div>
+</div>
+</div>
+{% schema %}
+{
+  "name": "Roselle · Cierre",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Antetítulo",
+      "default": "TU CUERPO. TU MOMENTO."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Sumá Roselle a tu rutina corporal."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Texto",
+      "default": "<p>Un cuidado simple para ayudar a que tu piel se vea más lisa, hidratada y cuidada.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Descripción de imagen",
+      "default": "Roselle Crema Corporal de 200 ml"
+    },
+    {
+      "type": "text",
+      "id": "cta",
+      "label": "Botón",
+      "default": "PEDIR MI ROSELLE"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Nota",
+      "default": "Crema Corporal Anticelulitis Reafirmante · 200 ml"
+    }
+  ],
+  "class": "roselle-section",
+  "presets": [
+    {
+      "name": "Roselle · Cierre"
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index"
+    ]
+  },
+  "limit": 1
+}
+{% endschema %}

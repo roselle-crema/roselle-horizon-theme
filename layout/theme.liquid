@@ -24,6 +24,9 @@
     {%- render 'scripts' -%}
     {%- render 'theme-styles-variables' -%}
     {%- render 'color-palette' -%}
+    {{ 'roselle.css' | asset_url | stylesheet_tag }}
+    {% render 'roselle-colors' %}
+    {% if request.page_type == 'index' %}<script src="{{ 'roselle.js' | asset_url }}" defer></script>{% endif %}
 
     {% if request.design_mode %}
       {%- render 'theme-editor' -%}

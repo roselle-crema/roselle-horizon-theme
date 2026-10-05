@@ -1,0 +1,145 @@
+{% liquid
+  assign roselle_product = settings.roselle_product
+  assign hero_image = section.settings.image | default: roselle_product.featured_image
+  assign form_id = 'RoselleProduct-' | append: section.id
+%}
+<div class="rs-hero rs-wrap" id="roselle-comprar">
+  <div class="rs-hero-copy">
+<p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+<h1>{{ section.settings.heading | escape }} <em>{{ section.settings.heading_accent | escape }}</em>
+</h1>
+<div class="rs-prose">{{ section.settings.body }}</div>
+<a class="rs-button rs-mobile-jump" href="{% if roselle_product != blank %}#{{ form_id }}{% else %}#roselle-ingredientes{% endif %}">{{ section.settings.cta | escape }} <span aria-hidden="true">↗</span>
+</a>
+<p class="rs-active-line">{{ section.settings.actives | escape }}</p>
+    {% render 'roselle-purchase', product: roselle_product, form_id: form_id, cta: section.settings.cta %}
+    <p class="rs-note">{{ section.settings.note | escape }}</p>
+<a class="rs-text-link" href="#roselle-ingredientes">{{ section.settings.secondary_cta | escape }} <span aria-hidden="true">↓</span>
+</a>
+  </div>
+  <div class="rs-hero-art">
+<span class="rs-media-label">{{ section.settings.media_label | escape }}</span>{% render 'roselle-media', image: hero_image, kind: 'product', label: section.settings.image_alt, priority: true %}<div class="rs-media-foot">
+<span>{{ section.settings.media_footer | escape }}</span>
+<span>200 ml</span>
+</div>
+</div>
+</div>
+{% if section.settings.sticky and roselle_product != blank and roselle_product.available %}
+  <div class="rs-sticky" data-roselle-sticky="{{ form_id }}" hidden>
+    <div>
+<strong>{{ section.settings.sticky_title | escape }}</strong>
+<span data-sticky-price>{{ roselle_product.selected_or_first_available_variant.price | money_with_currency }}</span>
+</div>
+    {% if roselle_product.requires_selling_plan or roselle_product.variants.size >= 250 or roselle_product.quantity_price_breaks_configured? %}<a class="rs-button rs-button--small" href="{{ roselle_product.url }}">{{ settings.roselle_ui_choose_options | escape }}</a>{% else %}<button type="submit" form="{{ form_id }}" name="add" class="rs-button rs-button--small" {% unless roselle_product.selected_or_first_available_variant.available %}disabled{% endunless %}>{{ section.settings.sticky_cta | escape }}</button>{% endif %}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Roselle · Presentación",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Antetítulo",
+      "default": "CREMA CORPORAL ANTICELULITIS · 200 ML"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Más suave. Más lisa."
+    },
+    {
+      "type": "text",
+      "id": "heading_accent",
+      "label": "Título destacado",
+      "default": "Más vos."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Descripción",
+      "default": "<p>Crema Corporal Anticelulitis Reafirmante. Ayuda a mejorar la apariencia de la piel de naranja, mientras hidrata y acompaña una piel de aspecto más firme y uniforme.</p>"
+    },
+    {
+      "type": "text",
+      "id": "actives",
+      "label": "Activos",
+      "default": "Con Cafeína, PDRN, Ácido Hialurónico, Centella Asiática y Vitamina E."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Descripción de imagen",
+      "default": "Crema Corporal Roselle de 200 ml"
+    },
+    {
+      "type": "text",
+      "id": "media_label",
+      "label": "Texto sobre imagen",
+      "default": "TU NUEVO RITUAL CORPORAL"
+    },
+    {
+      "type": "text",
+      "id": "media_footer",
+      "label": "Pie de imagen",
+      "default": "Cuidado que se vuelve rutina"
+    },
+    {
+      "type": "text",
+      "id": "cta",
+      "label": "Botón de compra",
+      "default": "QUIERO PROBAR ROSELLE"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Información de compra",
+      "default": "Pago seguro · Envío calculado al finalizar la compra"
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta",
+      "label": "Enlace secundario",
+      "default": "Conocé la fórmula"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "Compra fija en mobile",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "sticky_title",
+      "label": "Nombre en barra fija",
+      "default": "Roselle · 200 ml"
+    },
+    {
+      "type": "text",
+      "id": "sticky_cta",
+      "label": "Botón fijo",
+      "default": "AGREGAR"
+    }
+  ],
+  "limit": 1,
+  "enabled_on": {
+    "templates": [
+      "index"
+    ]
+  },
+  "class": "roselle-section",
+  "presets": [
+    {
+      "name": "Roselle · Presentación"
+    }
+  ]
+}
+{% endschema %}

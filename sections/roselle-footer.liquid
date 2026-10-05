@@ -1,0 +1,68 @@
+<div class="rs-footer">
+<div class="rs-wrap">
+<div class="rs-footer-top">
+<div>
+<a class="rs-brand" href="{{ routes.root_url }}">{{ section.settings.brand | escape }}.</a>
+<p>{{ section.settings.tagline | escape }}</p>
+</div>
+<nav aria-label="{{ settings.roselle_ui_footer_navigation | escape }}">{% if section.settings.menu != blank %}{% for link in section.settings.menu.links %}<a href="{{ link.url }}">{{ link.title | escape }}</a>{% endfor %}{% endif %}{% for policy in shop.policies %}{% if policy.body != blank %}<a href="{{ policy.url }}">{{ policy.title | escape }}</a>{% endif %}{% endfor %}{% if section.settings.contact != blank %}<a href="{{ section.settings.contact }}">{{ section.settings.contact_label | escape }}</a>{% endif %}</nav>
+</div>
+<div class="rs-footer-bottom">
+<span>© {{ 'now' | date: '%Y' }} {{ section.settings.brand | escape }}</span>
+<p>{{ section.settings.disclaimer | escape }}</p>
+</div>
+</div>
+</div>
+{% schema %}
+{
+  "name": "Roselle · Pie",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand",
+      "label": "Marca",
+      "default": "Roselle"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Frase",
+      "default": "Cuidarte, a tu manera."
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menú de enlaces"
+    },
+    {
+      "type": "url",
+      "id": "contact",
+      "label": "Página de contacto"
+    },
+    {
+      "type": "text",
+      "id": "contact_label",
+      "label": "Texto contacto",
+      "default": "Contactanos"
+    },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "Nota cosmética",
+      "default": "Producto cosmético de uso externo. Los resultados pueden variar según cada persona."
+    }
+  ],
+  "enabled_on": {
+    "groups": [
+      "footer"
+    ]
+  },
+  "class": "roselle-section",
+  "presets": [
+    {
+      "name": "Roselle · Pie"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,76 @@
+{% if section.settings.announcement != blank %}<div class="rs-announcement">{{ section.settings.announcement | escape }}</div>{% endif %}
+<header class="rs-header rs-wrap">
+  <a class="rs-brand" href="{{ routes.root_url }}" aria-label="{{ section.settings.brand | escape }}">
+    {% if section.settings.logo != blank %}{{ section.settings.logo | image_url: width: 400 | image_tag: width: 180, widths: '180, 360', sizes: '180px', alt: section.settings.brand }}{% else %}{{ section.settings.brand | escape }}<span class="rs-brand-dot">.</span>{% endif %}
+  </a>
+  <nav class="rs-nav" aria-label="{{ settings.roselle_ui_navigation | escape }}">
+<a href="{{ routes.root_url }}#roselle-ingredientes">{{ section.settings.ingredients_label | escape }}</a>
+<a href="{{ routes.root_url }}#roselle-rutina">{{ section.settings.routine_label | escape }}</a>
+<a href="{{ routes.root_url }}#roselle-preguntas">{{ section.settings.faq_label | escape }}</a>
+</nav>
+  <div class="rs-header-actions">
+<a class="rs-button rs-button--small" href="{{ routes.root_url }}#roselle-comprar">{{ section.settings.cta | escape }}</a>
+<div class="rs-cart-native">{% render 'header-actions', section: section, display_style: 'icon' %}</div>
+</div>
+</header>
+
+{% schema %}
+{
+  "name": "Roselle · Encabezado",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "announcement",
+      "label": "Anuncio",
+      "default": "ENVÍOS A TODA ARGENTINA"
+    },
+    {
+      "type": "text",
+      "id": "brand",
+      "label": "Marca",
+      "default": "Roselle"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Roselle"
+    },
+    {
+      "type": "text",
+      "id": "ingredients_label",
+      "label": "Enlace ingredientes",
+      "default": "La fórmula"
+    },
+    {
+      "type": "text",
+      "id": "routine_label",
+      "label": "Enlace uso",
+      "default": "Tu ritual"
+    },
+    {
+      "type": "text",
+      "id": "faq_label",
+      "label": "Enlace preguntas",
+      "default": "Preguntas"
+    },
+    {
+      "type": "text",
+      "id": "cta",
+      "label": "Botón",
+      "default": "Comprar"
+    }
+  ],
+  "enabled_on": {
+    "groups": [
+      "header"
+    ]
+  },
+  "class": "roselle-section",
+  "presets": [
+    {
+      "name": "Roselle · Encabezado"
+    }
+  ]
+}
+{% endschema %}

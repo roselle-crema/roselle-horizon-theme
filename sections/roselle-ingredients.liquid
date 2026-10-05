@@ -1,0 +1,141 @@
+<div id="roselle-ingredientes" class="rs-ingredients rs-wrap">
+<div class="rs-section-heading">
+<p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+<h2>{{ section.settings.heading | escape }}</h2>{% if section.settings.body != blank %}<div class="rs-prose">{{ section.settings.body }}</div>{% endif %}</div>
+<div class="rs-ingredients-grid">{% for block in section.blocks %}<article class="rs-ingredient {% if forloop.first %}rs-ingredient--lead{% endif %}" {{ block.shopify_attributes }}>
+<div class="rs-ingredient-media">{% render 'roselle-media', image: block.settings.image, kind: 'ingredient', label: block.settings.title %}</div>
+<div class="rs-ingredient-copy">
+<span class="rs-eyebrow">{{ block.settings.label | escape }}</span>
+<h3>{{ block.settings.title | escape }}</h3>
+<p>{{ block.settings.text | escape }}</p>
+<span class="rs-ingredient-benefit">{{ block.settings.benefit | escape }}</span>
+</div>
+</article>{% endfor %}</div>
+<p class="rs-note">{{ section.settings.note | escape }}</p>
+</div>
+
+{% schema %}
+{
+  "name": "Roselle · Ingredientes",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Antetítulo",
+      "default": "LA FÓRMULA, EN DETALLE"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Cinco activos. Un mismo cuidado."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Texto",
+      "default": "<p>La Cafeína es protagonista de una fórmula que combina cuidado de la textura, hidratación y suavidad.</p>"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Nota",
+      "default": "Los beneficios se refieren al cuidado cosmético de la piel. La experiencia puede variar según cada persona."
+    }
+  ],
+  "max_blocks": 5,
+  "class": "roselle-section",
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingrediente",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Nombre"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Antetítulo"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Descripción"
+        },
+        {
+          "type": "text",
+          "id": "benefit",
+          "label": "Beneficio"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Roselle · Ingredientes",
+      "blocks": [
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Cafeína",
+            "label": "EL ACTIVO PROTAGONISTA",
+            "text": "Un activo de cuidado corporal que acompaña una piel de aspecto más liso y ayuda a mejorar la apariencia de la celulitis.",
+            "benefit": "TEXTURA Y APARIENCIA"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "PDRN",
+            "label": "CUIDADO COMPLEMENTARIO",
+            "text": "Integra la fórmula para acompañar el acondicionamiento cosmético y una piel de aspecto cuidado.",
+            "benefit": "PIEL ACONDICIONADA"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Ácido Hialurónico",
+            "label": "HIDRATACIÓN",
+            "text": "Un ingrediente humectante que ayuda a conservar la hidratación y aporta una sensación de suavidad.",
+            "benefit": "HIDRATACIÓN Y SUAVIDAD"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Centella Asiática",
+            "label": "CUIDADO BOTÁNICO",
+            "text": "Complementa el cuidado de la textura para una piel visualmente más uniforme.",
+            "benefit": "APARIENCIA UNIFORME"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Vitamina E",
+            "label": "SUAVIDAD",
+            "text": "Un ingrediente antioxidante que complementa el cuidado cosmético y ayuda a mantener la piel suave.",
+            "benefit": "CUIDADO Y CONFORT"
+          }
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index"
+    ]
+  },
+  "limit": 1
+}
+{% endschema %}

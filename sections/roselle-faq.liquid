@@ -1,0 +1,114 @@
+<div class="rs-faq rs-wrap" id="roselle-preguntas">
+<div>
+<div class="rs-section-heading">
+<p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+<h2>{{ section.settings.heading | escape }}</h2>{% if section.settings.body != blank %}<div class="rs-prose">{{ section.settings.body }}</div>{% endif %}</div>
+</div>
+<div class="rs-faq-list">{% for block in section.blocks %}<details {{ block.shopify_attributes }}>
+<summary>{{ block.settings.question | escape }}<span aria-hidden="true">+</span>
+</summary>
+<div class="rs-prose">{{ block.settings.answer }}</div>
+</details>{% endfor %}</div>
+</div>
+{% schema %}
+{
+  "name": "Roselle · Preguntas",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Antetítulo",
+      "default": "ANTES DE EMPEZAR"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Conocé tu próximo ritual."
+    }
+  ],
+  "max_blocks": 12,
+  "class": "roselle-section",
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Pregunta",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Pregunta"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Respuesta"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Roselle · Preguntas",
+      "blocks": [
+        {
+          "type": "question",
+          "settings": {
+            "question": "¿Cómo se usa Roselle?",
+            "answer": "<p>Aplicá una pequeña cantidad sobre la piel limpia y seca. Masajeá suavemente hasta su absorción y seguí las indicaciones del envase.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "¿En qué zonas se puede aplicar?",
+            "answer": "<p>Podés incorporarla al cuidado corporal de piernas, brazos, pecho y cuello. Respetá siempre las precauciones indicadas en el envase.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "¿Cuánto trae?",
+            "answer": "<p>Cada envase contiene 200 ml de Crema Corporal Anticelulitis Reafirmante.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "¿Con qué frecuencia se recomienda usarla?",
+            "answer": "<p>Seguí la frecuencia indicada en el envase del producto. Elegí un momento de tu rutina que te resulte fácil de sostener.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "¿Cuánto tarda en absorberse?",
+            "answer": "<p>El tiempo puede variar según la cantidad aplicada, la zona y tu piel. Empezá con una pequeña cantidad y masajeá hasta que se absorba.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "¿Realizan envíos a todo el país?",
+            "answer": "<p>Realizamos envíos a Argentina. Ingresá tu dirección en el checkout para consultar las opciones disponibles, el costo y los plazos para tu zona.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "¿Qué puedo esperar de Roselle?",
+            "answer": "<p>Es un producto cosmético que ayuda a mejorar la apariencia de la celulitis y a que la piel se vea más lisa, hidratada y cuidada. La experiencia puede variar según cada persona; no se prometen resultados ni plazos garantizados.</p>"
+          }
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index"
+    ]
+  },
+  "limit": 1
+}
+{% endschema %}

@@ -1,0 +1,117 @@
+<div class="rs-routine" id="roselle-rutina">
+<div class="rs-wrap rs-split">
+<div>
+<div class="rs-section-heading">
+<p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+<h2>{{ section.settings.heading | escape }}</h2>{% if section.settings.body != blank %}<div class="rs-prose">{{ section.settings.body }}</div>{% endif %}</div>
+<ol class="rs-steps">{% for block in section.blocks %}<li {{ block.shopify_attributes }}>
+<span aria-hidden="true">0{{ forloop.index }}</span>
+<div>
+<h3>{{ block.settings.title | escape }}</h3>
+<p>{{ block.settings.text | escape }}</p>
+</div>
+</li>{% endfor %}</ol>
+<p class="rs-zones">{{ section.settings.zones | escape }}</p>
+<p class="rs-note">{{ section.settings.note | escape }}</p>
+</div>
+<div class="rs-routine-media">{% render 'roselle-media', image: section.settings.image, kind: 'ritual', label: section.settings.image_alt %}</div>
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "Roselle · Modo de uso",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Antetítulo",
+      "default": "UN RITUAL SENCILLO"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Un masaje. Un momento para vos."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Descripción de imagen",
+      "default": "Aplicación de Roselle con masaje corporal"
+    },
+    {
+      "type": "text",
+      "id": "zones",
+      "label": "Zonas",
+      "default": "PIERNAS · BRAZOS · PECHO · CUELLO"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Nota de uso",
+      "default": "Seguí las indicaciones de frecuencia y las precauciones del envase."
+    }
+  ],
+  "max_blocks": 4,
+  "class": "roselle-section",
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Paso",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Descripción"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Roselle · Modo de uso",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "title": "Aplicá una pequeña cantidad",
+            "text": "Distribuí la crema sobre la piel limpia y seca de la zona que quieras cuidar."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Masajeá con suavidad",
+            "text": "Realizá movimientos suaves hasta que la crema se absorba."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Hacé tuyo el momento",
+            "text": "Sumala a tu rutina siguiendo las indicaciones del envase."
+          }
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index"
+    ]
+  },
+  "limit": 1
+}
+{% endschema %}

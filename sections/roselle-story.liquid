@@ -1,0 +1,116 @@
+<div class="rs-story rs-tone-{{ section.settings.tone }}">
+<div class="rs-wrap rs-split {% if section.settings.reverse %}rs-split--reverse{% endif %}">
+  <div class="rs-story-media">{% render 'roselle-media', image: section.settings.image, kind: section.settings.media_kind, label: section.settings.image_alt %}</div>
+  <div class="rs-story-copy">
+<div class="rs-section-heading">
+<p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+<h2>{{ section.settings.heading | escape }}</h2>{% if section.settings.body != blank %}<div class="rs-prose">{{ section.settings.body }}</div>{% endif %}</div>{% if section.settings.detail != blank %}<p class="rs-pullquote">{{ section.settings.detail | escape }}</p>{% endif %}{% if section.settings.cta != blank %}<a class="rs-text-link" href="#roselle-comprar">{{ section.settings.cta | escape }} <span aria-hidden="true">↗</span>
+</a>{% endif %}</div>
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "Roselle · Relato",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Antetítulo",
+      "default": "TU PIEL, SIN EXIGENCIAS"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "La textura es parte de tu piel. Cuidarla también."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Texto",
+      "default": "<p>La piel de naranja y la textura irregular pueden formar parte de tu cuerpo. Si querés mejorar su apariencia, podés empezar por un cuidado simple, pensado para acompañarte.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Descripción de imagen",
+      "default": "Un momento de cuidado corporal"
+    },
+    {
+      "type": "select",
+      "id": "media_kind",
+      "label": "Placeholder",
+      "options": [
+        {
+          "value": "ritual",
+          "label": "Uso"
+        },
+        {
+          "value": "product",
+          "label": "Producto"
+        },
+        {
+          "value": "texture",
+          "label": "Textura"
+        }
+      ],
+      "default": "ritual"
+    },
+    {
+      "type": "text",
+      "id": "detail",
+      "label": "Frase destacada",
+      "default": "Un momento para vos. Sin promesas imposibles."
+    },
+    {
+      "type": "text",
+      "id": "cta",
+      "label": "Enlace de compra"
+    },
+    {
+      "type": "checkbox",
+      "id": "reverse",
+      "label": "Imagen a la derecha",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "Fondo",
+      "options": [
+        {
+          "value": "cream",
+          "label": "Crema"
+        },
+        {
+          "value": "rose",
+          "label": "Rosa suave"
+        },
+        {
+          "value": "light",
+          "label": "Blanco roto"
+        }
+      ],
+      "default": "cream"
+    }
+  ],
+  "class": "roselle-section",
+  "presets": [
+    {
+      "name": "Roselle · Relato"
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index"
+    ]
+  }
+}
+{% endschema %}
