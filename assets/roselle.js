@@ -113,3 +113,43 @@ if (!customElements.get('roselle-gallery')) {
     }
   });
 }
+
+/* Before/after slider: a native range input gives keyboard and screen-reader support; pointer events let mouse and touch drag from anywhere on the image. */
+if (!customElements.get('roselle-compare')) {
+  customElements.define('roselle-compare', class extends HTMLElement {
+    connectedCallback() {
+      this.controller = new AbortController();
+      const { signal } = this.controller;
+      this.range = this.querySelector('.rs-compare-range');
+      if (!this.range) return;
+      this.range.addEventListener('input', () => this.setPosition(this.range.value), { signal });
+      this.addEventListener('pointerdown', (event) => {
+        if (event.button !== 0) return;
+        this.dragging = true;
+        try { this.setPointerCapture(event.pointerId); } catch { /* pointer already released */ }
+        /* On touch, wait for a horizontal move so a vertical page scroll doesn't jump the divider. */
+        if (event.pointerType === 'mouse') this.fromPointer(event);
+      }, { signal });
+      this.addEventListener('pointermove', (event) => {
+        if (this.dragging) this.fromPointer(event);
+      }, { signal });
+      for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) {
+        this.addEventListener(type, () => { this.dragging = false; }, { signal });
+      }
+      this.setPosition(this.range.value);
+    }
+    fromPointer(event) {
+      const rect = this.getBoundingClientRect();
+      const ratio = (event.clientX - rect.left) / rect.width;
+      const value = Math.round(Math.min(Math.max(ratio, 0), 1) * 100);
+      this.range.value = String(value);
+      this.setPosition(value);
+    }
+    setPosition(value) {
+      this.style.setProperty('--rs-compare-pos', `${value}%`);
+    }
+    disconnectedCallback() {
+      this.controller?.abort();
+    }
+  });
+}

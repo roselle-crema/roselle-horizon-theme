@@ -19,6 +19,7 @@ La identidad es original: tipografía serif editorial, crema cálido, rosa empol
 - `templates/index.json`: portada con once instancias de contenido. `roselle-story` se reutiliza para problema, solución y textura.
 - `sections/roselle-header.liquid` y `roselle-footer.liquid`: encabezado y pie globales. El encabezado reutiliza `header-actions` de Horizon para carrito, contador y panel nativos.
 - `sections/roselle-hero.liquid`: galería (medios del producto + bloques "Imagen de la galería"), presentación, compra y barra fija mobile. La galería usa CSS scroll-snap; `roselle.js` solo sincroniza puntos/miniaturas, clics y la imagen de la variante elegida.
+- `sections/roselle-before-after.liquid`: Antes/Después con bloques "Comparación" (imagen Antes, imagen Después, alt de cada una, zona, título y texto opcionales). Formato lado a lado o slider interactivo; en la tienda solo se muestran las comparaciones completas y la sección se oculta si no hay ninguna.
 - `sections/roselle-benefits.liquid`, `roselle-story.liquid`, `roselle-ingredients.liquid`, `roselle-routine.liquid`, `roselle-reviews.liquid`, `roselle-trust.liquid`, `roselle-faq.liquid`, `roselle-closing.liquid`: contenido editable con bloques donde corresponde.
 - `snippets/roselle-media.liquid`: imágenes responsive y placeholders CSS sin archivos inventados.
 - `snippets/roselle-purchase.liquid`: formulario `form 'product'`, variantes, cantidad y precio formateado por Shopify.
@@ -50,6 +51,7 @@ Se mantienen las plantillas de producto, carrito y checkout de Horizon. El formu
 - Solución y cierre: fotografías adicionales de producto. El cierre puede reutilizar la imagen destacada.
 - Ingredientes: hasta cinco imágenes propias, una por bloque. Cafeína tiene mayor superficie visible.
 - Textura: macro real de la crema blanca, aproximadamente 1400 × 1200 px.
+- Antes/Después: un par de imágenes por comparación, tomadas con el mismo encuadre, luz y distancia. Ambas se recortan a la misma proporción (4:5 por defecto); usar el punto focal de Shopify para centrar la zona. Son imágenes de referencia: no agregar porcentajes, plazos ni resultados.
 - Reseñas: fotos autorizadas opcionales. No se incluyen imágenes ni reseñas de terceros.
 
 Los placeholders son ilustraciones CSS rotuladas; no representan el envase final ni una fotografía del producto. Subir imágenes reales sustituye automáticamente la ilustración correspondiente. La imagen del hero carga con prioridad; las demás cargan de forma diferida.

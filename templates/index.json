@@ -44,6 +44,28 @@
         "b4"
       ]
     },
+    "before_after": {
+      "type": "roselle-before-after",
+      "settings": {},
+      "blocks": {
+        "c1": {
+          "type": "comparison",
+          "settings": {
+            "zone": "Muslos"
+          }
+        },
+        "c2": {
+          "type": "comparison",
+          "settings": {
+            "zone": "Piernas"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2"
+      ]
+    },
     "problem": {
       "type": "roselle-story",
       "settings": {}
@@ -302,6 +324,7 @@
   "order": [
     "hero",
     "benefits",
+    "before_after",
     "problem",
     "solution",
     "ingredients",

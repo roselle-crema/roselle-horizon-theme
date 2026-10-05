@@ -1,7 +1,7 @@
 {% doc %}
   Responsive media with an explicit illustration when no merchant image exists.
   @param {object} [image] - Merchant image.
-  @param {string} [kind] - product, ritual, texture or ingredient.
+  @param {string} [kind] - product, ritual, texture, ingredient or skin.
   @param {string} [label] - Accessible description.
   @param {boolean} [priority] - Load hero eagerly.
 {% enddoc %}
@@ -22,6 +22,8 @@
         <span class="rs-ritual-line" aria-hidden="true"></span>
       {% when 'ingredient' %}
         <span class="rs-ingredient-shape" aria-hidden="true"></span>
+      {% when 'skin' %}
+        <span class="rs-skin" aria-hidden="true"></span>
       {% else %}
         {%- comment -%} Bottle of 200 ml with black pump, white cream and a cream/mauve label (see ROSELLE_BRIEF.md §7). {%- endcomment -%}
         <svg class="rs-bottle" viewBox="0 0 240 420" aria-hidden="true" focusable="false">

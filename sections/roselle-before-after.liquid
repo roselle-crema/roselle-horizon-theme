@@ -1,0 +1,355 @@
+{% liquid
+  assign aspect = section.settings.aspect_ratio | replace: '-', ' / '
+  assign visible_count = 0
+  for block in section.blocks
+    if block.settings.before_image != blank and block.settings.after_image != blank
+      assign visible_count = visible_count | plus: 1
+    elsif request.design_mode
+      assign visible_count = visible_count | plus: 1
+    endif
+  endfor
+  assign columns = section.settings.columns_desktop | plus: 0
+  if visible_count < 2
+    assign columns = 1
+  endif
+  if section.settings.layout == 'slider'
+    assign slot_width = 1200 | divided_by: columns
+    assign image_sizes = '(min-width: 990px) ' | append: slot_width | append: 'px, 100vw'
+  else
+    assign slot_width = 600 | divided_by: columns
+    assign image_sizes = '(min-width: 990px) ' | append: slot_width | append: 'px, 50vw'
+  endif
+%}
+{%- if visible_count > 0 or request.design_mode -%}
+  <div class="rs-compare-section rs-tone-{{ section.settings.tone }}">
+    <div class="rs-wrap">
+      <div class="rs-section-heading rs-compare-heading">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2>{{ section.settings.heading | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <p class="rs-prose">{{ section.settings.subheading | escape }}</p>
+        {%- endif -%}
+      </div>
+
+      <div
+        class="rs-compare-grid rs-compare-grid--{{ columns }} rs-compare-grid--{{ section.settings.layout }}"
+        style="--rs-compare-ratio: {{ aspect }};"
+      >
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign before = block.settings.before_image
+            assign after = block.settings.after_image
+            assign complete = false
+            if before != blank and after != blank
+              assign complete = true
+            endif
+            unless complete or request.design_mode
+              continue
+            endunless
+            assign before_alt = block.settings.before_alt | default: section.settings.label_before
+            assign after_alt = block.settings.after_alt | default: section.settings.label_after
+          -%}
+          <figure class="rs-compare" {{ block.shopify_attributes }}>
+            {%- if section.settings.layout == 'slider' -%}
+              <roselle-compare class="rs-compare-slider" style="--rs-compare-pos: 50%;">
+                <div class="rs-compare-frame rs-compare-frame--after">
+                  {%- if after != blank -%}
+                    {{ after | image_url: width: 1400 | image_tag: widths: '375, 550, 750, 1000, 1400', sizes: image_sizes, loading: 'lazy', alt: after_alt, class: 'rs-compare-image' }}
+                  {%- else -%}
+                    {% render 'roselle-media', kind: 'skin', label: after_alt %}
+                  {%- endif -%}
+                  <span class="rs-compare-label rs-compare-label--after" aria-hidden="true">{{ section.settings.label_after | escape }}</span>
+                </div>
+                <div class="rs-compare-frame rs-compare-frame--before">
+                  {%- if before != blank -%}
+                    {{ before | image_url: width: 1400 | image_tag: widths: '375, 550, 750, 1000, 1400', sizes: image_sizes, loading: 'lazy', alt: before_alt, class: 'rs-compare-image' }}
+                  {%- else -%}
+                    {% render 'roselle-media', kind: 'skin', label: before_alt %}
+                  {%- endif -%}
+                  <span class="rs-compare-label rs-compare-label--before" aria-hidden="true">{{ section.settings.label_before | escape }}</span>
+                </div>
+                <span class="rs-compare-handle" aria-hidden="true"><span></span></span>
+                <input
+                  class="rs-compare-range"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="50"
+                  step="1"
+                  aria-label="{{ section.settings.slider_label | escape }}"
+                >
+              </roselle-compare>
+            {%- else -%}
+              <div class="rs-compare-pair">
+                <div class="rs-compare-frame">
+                  {%- if before != blank -%}
+                    {{ before | image_url: width: 1000 | image_tag: widths: '200, 375, 550, 750, 1000', sizes: image_sizes, loading: 'lazy', alt: before_alt, class: 'rs-compare-image' }}
+                  {%- else -%}
+                    {% render 'roselle-media', kind: 'skin', label: before_alt %}
+                  {%- endif -%}
+                  <span class="rs-compare-label">{{ section.settings.label_before | escape }}</span>
+                </div>
+                <div class="rs-compare-frame">
+                  {%- if after != blank -%}
+                    {{ after | image_url: width: 1000 | image_tag: widths: '200, 375, 550, 750, 1000', sizes: image_sizes, loading: 'lazy', alt: after_alt, class: 'rs-compare-image' }}
+                  {%- else -%}
+                    {% render 'roselle-media', kind: 'skin', label: after_alt %}
+                  {%- endif -%}
+                  <span class="rs-compare-label rs-compare-label--after">{{ section.settings.label_after | escape }}</span>
+                </div>
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.zone != blank or block.settings.title != blank or block.settings.text != blank -%}
+              <figcaption class="rs-compare-caption">
+                {%- if block.settings.zone != blank -%}
+                  <span class="rs-compare-zone">{{ block.settings.zone | escape }}</span>
+                {%- endif -%}
+                {%- if block.settings.title != blank -%}
+                  <h3>{{ block.settings.title | escape }}</h3>
+                {%- endif -%}
+                {%- if block.settings.text != blank -%}
+                  <p>{{ block.settings.text | escape }}</p>
+                {%- endif -%}
+              </figcaption>
+            {%- endif -%}
+          </figure>
+        {%- endfor -%}
+      </div>
+
+      {%- if request.design_mode and visible_count == 0 -%}
+        <p class="rs-editor-note">{{ section.settings.editor_hint | escape }}</p>
+      {%- endif -%}
+      {%- if section.settings.note != blank -%}
+        <p class="rs-note rs-compare-note">{{ section.settings.note | escape }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Roselle · Antes y Después",
+  "tag": "section",
+  "class": "roselle-section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Encabezado"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Antetítulo",
+      "default": "TEXTURA Y APARIENCIA"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Una piel que se ve diferente"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subtítulo",
+      "default": "Compará visualmente la apariencia de la textura, suavidad y uniformidad de la piel."
+    },
+    {
+      "type": "header",
+      "content": "Comparaciones"
+    },
+    {
+      "type": "paragraph",
+      "content": "En la tienda solo se muestran las comparaciones con imagen Antes y Después cargadas. Las que están incompletas se ven solo en el editor."
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Formato",
+      "options": [
+        {
+          "value": "side",
+          "label": "Lado a lado"
+        },
+        {
+          "value": "slider",
+          "label": "Slider interactivo"
+        }
+      ],
+      "default": "side"
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "label": "Proporción de las imágenes",
+      "options": [
+        {
+          "value": "4-5",
+          "label": "Vertical (4:5)"
+        },
+        {
+          "value": "1-1",
+          "label": "Cuadrada (1:1)"
+        },
+        {
+          "value": "3-4",
+          "label": "Vertical alta (3:4)"
+        },
+        {
+          "value": "4-3",
+          "label": "Horizontal (4:3)"
+        }
+      ],
+      "default": "4-5",
+      "info": "Antes y Después siempre se muestran con el mismo tamaño. Usá el punto focal de cada imagen para centrar la zona."
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "Comparaciones por fila en desktop",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "text",
+      "id": "label_before",
+      "label": "Etiqueta Antes",
+      "default": "ANTES"
+    },
+    {
+      "type": "text",
+      "id": "label_after",
+      "label": "Etiqueta Después",
+      "default": "DESPUÉS"
+    },
+    {
+      "type": "text",
+      "id": "slider_label",
+      "label": "Nombre accesible del slider",
+      "default": "Deslizá para comparar antes y después"
+    },
+    {
+      "type": "header",
+      "content": "Estilo y notas"
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "Fondo",
+      "options": [
+        {
+          "value": "cream",
+          "label": "Crema"
+        },
+        {
+          "value": "rose",
+          "label": "Rosa suave"
+        },
+        {
+          "value": "light",
+          "label": "Blanco roto"
+        }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Nota",
+      "default": "Imágenes de referencia con fines ilustrativos. La apariencia de la piel puede variar según cada persona."
+    },
+    {
+      "type": "text",
+      "id": "editor_hint",
+      "label": "Ayuda del editor",
+      "default": "Cargá la imagen Antes y la imagen Después en cada comparación para mostrarla en la tienda."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "comparison",
+      "name": "Comparación",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "before_image",
+          "label": "Imagen Antes"
+        },
+        {
+          "type": "text",
+          "id": "before_alt",
+          "label": "Texto alternativo Antes",
+          "info": "Por ejemplo: \"Piel de los muslos antes de usar Roselle\"."
+        },
+        {
+          "type": "image_picker",
+          "id": "after_image",
+          "label": "Imagen Después"
+        },
+        {
+          "type": "text",
+          "id": "after_alt",
+          "label": "Texto alternativo Después",
+          "info": "Por ejemplo: \"Piel de los muslos después de usar Roselle\"."
+        },
+        {
+          "type": "text",
+          "id": "zone",
+          "label": "Zona del cuerpo (opcional)",
+          "info": "Por ejemplo: Muslos, Parte inferior del glúteo, Piernas, Brazos, Textura macro de piel."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto corto (opcional)",
+          "info": "Evitá porcentajes, plazos o resultados garantizados."
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index"
+    ]
+  },
+  "presets": [
+    {
+      "name": "Roselle · Antes y Después",
+      "blocks": [
+        {
+          "type": "comparison",
+          "settings": {
+            "zone": "Muslos"
+          }
+        },
+        {
+          "type": "comparison",
+          "settings": {
+            "zone": "Piernas"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
