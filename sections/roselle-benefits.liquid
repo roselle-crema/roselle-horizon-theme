@@ -1,9 +1,12 @@
 <div class="rs-benefits">
-<div class="rs-wrap rs-benefits-grid">{% for block in section.blocks %}<div class="rs-benefit" {{ block.shopify_attributes }}>
+<roselle-carousel class="rs-wrap rs-benefits-inner">
+<div class="rs-benefits-grid rs-swipe" data-carousel-track>{% for block in section.blocks %}<div class="rs-benefit rs-tap" data-carousel-item {{ block.shopify_attributes }}>
 <span class="rs-benefit-number" aria-hidden="true">0{{ forloop.index }}</span>
 <h2>{{ block.settings.title | escape }}</h2>
 <p>{{ block.settings.text | escape }}</p>
 </div>{% endfor %}</div>
+{%- if section.blocks.size > 1 -%}<div class="rs-dots">{% for block in section.blocks %}<button type="button" class="rs-dot" data-carousel-go="{{ forloop.index0 }}" aria-label="{{ block.settings.title | escape }}"{% if forloop.first %} aria-current="true"{% endif %}></button>{% endfor %}</div>{%- endif -%}
+</roselle-carousel>
 </div>
 {% schema %}
 {

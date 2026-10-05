@@ -1,8 +1,9 @@
 <div class="rs-trust">
-<div class="rs-wrap rs-trust-grid">{% for block in section.blocks %}<div {{ block.shopify_attributes }}>
+<div class="rs-wrap rs-trust-grid rs-swipe">{% for block in section.blocks %}<div class="rs-trust-item rs-tap" {{ block.shopify_attributes }}>
 <span class="rs-trust-icon" aria-hidden="true">{% case block.settings.icon %}{% when 'shipping' %}{{ 'icon-inventory.svg' | inline_asset_content }}{% when 'payment' %}{{ 'icon-checkmark.svg' | inline_asset_content }}{% else %}{{ 'icon-info.svg' | inline_asset_content }}{% endcase %}</span>
+<div class="rs-trust-copy">
 <h2>{{ block.settings.title | escape }}</h2>
-<p>{{ block.settings.text | escape }}</p>{% if block.settings.link != blank %}<a class="rs-text-link" href="{{ block.settings.link }}">{{ block.settings.link_label | escape }}</a>{% endif %}</div>{% endfor %}</div>
+<p>{{ block.settings.text | escape }}</p>{% if block.settings.link != blank %}<a class="rs-text-link" href="{{ block.settings.link }}">{{ block.settings.link_label | escape }}</a>{% endif %}</div></div>{% endfor %}</div>
 </div>
 {% schema %}
 {

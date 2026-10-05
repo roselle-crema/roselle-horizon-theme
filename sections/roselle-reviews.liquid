@@ -14,7 +14,8 @@
 <p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>
 <h2>{{ section.settings.heading | escape }}</h2>{% if section.settings.body != blank %}<div class="rs-prose">{{ section.settings.body }}</div>{% endif %}</div>
 {%- if request.design_mode and real_reviews == 0 -%}<p class="rs-editor-note">{{ section.settings.editor_hint | escape }}</p>{%- endif -%}
-<div class="rs-review-grid">{% for block in section.blocks %}{% liquid
+<roselle-marquee class="rs-marquee"{% if section.settings.autoplay %} data-autoplay{% endif %} data-speed="{{ section.settings.speed }}">
+<div class="rs-review-grid rs-marquee-track" data-marquee-track tabindex="0" role="region" aria-label="{{ section.settings.heading | escape }}">{% for block in section.blocks %}{% liquid
   assign is_real = false
   if block.settings.placeholder == false and block.settings.quote != blank
     assign is_real = true
@@ -28,6 +29,7 @@
 <h3>{{ settings.roselle_ui_review_title | escape }}</h3>
 <p>{{ settings.roselle_ui_review_pending | escape }}</p>{% else %}<blockquote>{{ block.settings.quote | escape }}</blockquote>
 <p class="rs-review-author">{{ block.settings.author | escape }}</p>{% endif %}</article>{% endfor %}</div>
+</roselle-marquee>
 </div>
 {%- endif -%}
 
@@ -57,6 +59,23 @@
       "id": "editor_hint",
       "label": "Ayuda del editor",
       "default": "Esta sección está oculta en la tienda hasta que cargues al menos una reseña real."
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Desplazamiento automático continuo",
+      "info": "Se pausa al tocar o arrastrar y se desactiva si el visitante pidió reducir el movimiento.",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Velocidad",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 24
     }
   ],
   "max_blocks": 6,
