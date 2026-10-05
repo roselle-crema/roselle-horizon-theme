@@ -66,7 +66,7 @@
         "body": "<p>Ayuda a mejorar la apariencia de la piel de naranja mientras hidrata y suaviza.</p>",
         "actives": "Cafeína + PDRN + Ácido Hialurónico + Centella + Vitamina E",
         "cta": "QUIERO PROBAR ROSELLE",
-        "note": "Pago seguro · Envío calculado al finalizar la compra",
+        "note": "Pago seguro · Envío GRATIS a toda Argentina",
         "secondary_cta": "",
         "sticky": true,
         "sticky_title": "Roselle · 200 ml",
@@ -282,7 +282,7 @@
           "type": "step",
           "settings": {
             "title": "Masajeá",
-            "text": "Con movimientos suaves hasta absorber."
+            "text": "Con movimientos suaves hasta que se absorba."
           }
         },
         "b3": {
@@ -370,8 +370,8 @@
           "type": "trust",
           "settings": {
             "icon": "support",
-            "title": "Envíos a toda Argentina",
-            "text": "Calculá tu envío al comprar.",
+            "title": "Envío GRATIS a toda Argentina",
+            "text": "Nosotros cubrimos el costo del envío.",
             "link": "",
             "link_label": "Más información"
           }
@@ -381,7 +381,7 @@
           "settings": {
             "icon": "payment",
             "title": "Pago seguro",
-            "text": "Compra protegida desde Shopify.",
+            "text": "Comprá de forma segura desde nuestra tienda.",
             "link": "",
             "link_label": "Más información"
           }
@@ -446,7 +446,7 @@
           "type": "question",
           "settings": {
             "question": "¿Realizan envíos a todo el país?",
-            "answer": "<p>Sí, enviamos a toda Argentina. Calculá costo y plazo en el checkout.</p>"
+            "answer": "<p>Sí. Realizamos envíos GRATIS a toda Argentina. El costo del envío lo cubrimos nosotros.</p>"
           }
         },
         "b7": {
