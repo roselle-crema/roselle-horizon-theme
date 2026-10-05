@@ -313,6 +313,7 @@
         "eyebrow": "EL PLACER DE LO SIMPLE",
         "heading": "Textura blanca. Un momento de calma.",
         "body": "<p>Una crema blanca para distribuir con un masaje suave. Un gesto sencillo que podés sumar a tu momento de cuidado corporal.</p>",
+        "image": "shopify://shop_images/b9a66c89-1bd7-4900-9301-b98579b90ece.png",
         "image_alt": "Textura blanca de la crema Roselle",
         "media_kind": "texture",
         "detail": "La cantidad y el masaje hacen parte de la experiencia.",
@@ -485,6 +486,7 @@
   },
   "order": [
     "hero",
+    "reviews",
     "benefits",
     "before_after",
     "problem",
@@ -492,7 +494,6 @@
     "ingredients",
     "routine",
     "texture",
-    "reviews",
     "trust",
     "faq",
     "closing"
