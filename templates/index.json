@@ -1,12 +1,80 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "roselle-hero",
-      "settings": {}
+      "blocks": {
+        "image_k4J3r4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/16915d8c-b266-40b6-b6f2-3515a5f66dd9.png",
+            "alt": "",
+            "placeholder": "product"
+          }
+        },
+        "image_CmjeYr": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/aa0426a0-fd50-48d4-a36a-7d50a506c9aa.png",
+            "alt": "",
+            "placeholder": "product"
+          }
+        },
+        "image_CrHiez": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/8133b85c-849e-476a-be17-a6585915e1f0.png",
+            "alt": "",
+            "placeholder": "product"
+          }
+        },
+        "image_kdpNnb": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/05fefa9c-86dd-46b7-9db3-4c03400293cf.png",
+            "alt": "",
+            "placeholder": "product"
+          }
+        }
+      },
+      "block_order": [
+        "image_k4J3r4",
+        "image_CmjeYr",
+        "image_CrHiez",
+        "image_kdpNnb"
+      ],
+      "settings": {
+        "show_product_media": true,
+        "blocks_position": "after",
+        "aspect_ratio": "4-5",
+        "image_fit": "contain",
+        "gallery_position": "left",
+        "image_alt": "Botella de Roselle Crema Corporal Anticelulitis Reafirmante de 200 ml",
+        "gallery_label": "Imágenes de Roselle",
+        "thumb_label": "Ver imagen",
+        "eyebrow": "CREMA CORPORAL ANTICELULITIS · 200 ML",
+        "heading": "Más suave. Más lisa.",
+        "heading_accent": "Más vos.",
+        "body": "<p>Crema Corporal Anticelulitis Reafirmante. Ayuda a mejorar la apariencia de la piel de naranja, mientras hidrata y acompaña una piel de aspecto más firme y uniforme.</p>",
+        "actives": "Con Cafeína, PDRN, Ácido Hialurónico, Centella Asiática y Vitamina E.",
+        "cta": "QUIERO PROBAR ROSELLE",
+        "note": "Pago seguro · Envío calculado al finalizar la compra",
+        "secondary_cta": "Conocé la fórmula",
+        "sticky": true,
+        "sticky_title": "Roselle · 200 ml",
+        "sticky_cta": "AGREGAR"
+      }
     },
     "benefits": {
       "type": "roselle-benefits",
-      "settings": {},
       "blocks": {
         "b1": {
           "type": "benefit",
@@ -42,11 +110,11 @@
         "b2",
         "b3",
         "b4"
-      ]
+      ],
+      "settings": {}
     },
     "before_after": {
       "type": "roselle-before-after",
-      "settings": {},
       "blocks": {
         "c1": {
           "type": "comparison",
@@ -64,11 +132,22 @@
       "block_order": [
         "c1",
         "c2"
-      ]
+      ],
+      "settings": {}
     },
     "problem": {
       "type": "roselle-story",
-      "settings": {}
+      "settings": {
+        "eyebrow": "TU PIEL, SIN EXIGENCIAS",
+        "heading": "La textura es parte de tu piel. Cuidarla también.",
+        "body": "<p>La piel de naranja y la textura irregular pueden formar parte de tu cuerpo. Si querés mejorar su apariencia, podés empezar por un cuidado simple, pensado para acompañarte.</p>",
+        "image_alt": "Un momento de cuidado corporal",
+        "media_kind": "ritual",
+        "detail": "Un momento para vos. Sin promesas imposibles.",
+        "cta": "",
+        "reverse": false,
+        "tone": "cream"
+      }
     },
     "solution": {
       "type": "roselle-story",
@@ -76,17 +155,17 @@
         "eyebrow": "CONOCÉ ROSELLE",
         "heading": "El cuidado del rostro, ahora en tu ritual corporal.",
         "body": "<p>Tu cuerpo también merece un momento de atención. Roselle reúne cinco activos en una crema corporal que ayuda a hidratar, suavizar y mejorar la apariencia de la textura.</p>",
+        "image": "shopify://shop_images/c5d72718-2ba4-48f3-85b9-e7172fe1da3c.png",
+        "image_alt": "Roselle Crema Corporal Anticelulitis Reafirmante",
+        "media_kind": "product",
         "detail": "Una crema. Un masaje. Una rutina que podés hacer tuya.",
         "cta": "QUIERO PROBAR ROSELLE",
         "reverse": true,
-        "tone": "rose",
-        "media_kind": "product",
-        "image_alt": "Roselle Crema Corporal Anticelulitis Reafirmante"
+        "tone": "rose"
       }
     },
     "ingredients": {
       "type": "roselle-ingredients",
-      "settings": {},
       "blocks": {
         "b1": {
           "type": "ingredient",
@@ -141,11 +220,16 @@
         "b3",
         "b4",
         "b5"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "LA FÓRMULA, EN DETALLE",
+        "heading": "Cinco activos. Un mismo cuidado.",
+        "body": "<p>La Cafeína es protagonista de una fórmula que combina cuidado de la textura, hidratación y suavidad.</p>",
+        "note": "Los beneficios se refieren al cuidado cosmético de la piel. La experiencia puede variar según cada persona."
+      }
     },
     "routine": {
       "type": "roselle-routine",
-      "settings": {},
       "blocks": {
         "b1": {
           "type": "step",
@@ -173,7 +257,14 @@
         "b1",
         "b2",
         "b3"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "UN RITUAL SENCILLO",
+        "heading": "Un masaje. Un momento para vos.",
+        "image_alt": "Aplicación de Roselle con masaje corporal",
+        "zones": "PIERNAS · BRAZOS · PECHO · CUELLO",
+        "note": "Seguí las indicaciones de frecuencia y las precauciones del envase."
+      }
     },
     "texture": {
       "type": "roselle-story",
@@ -181,34 +272,42 @@
         "eyebrow": "EL PLACER DE LO SIMPLE",
         "heading": "Textura blanca. Un momento de calma.",
         "body": "<p>Una crema blanca para distribuir con un masaje suave. Un gesto sencillo que podés sumar a tu momento de cuidado corporal.</p>",
-        "detail": "La cantidad y el masaje hacen parte de la experiencia.",
-        "tone": "light",
-        "media_kind": "texture",
         "image_alt": "Textura blanca de la crema Roselle",
+        "media_kind": "texture",
+        "detail": "La cantidad y el masaje hacen parte de la experiencia.",
         "cta": "SUMAR A MI RUTINA",
-        "reverse": true
+        "reverse": true,
+        "tone": "light"
       }
     },
     "reviews": {
       "type": "roselle-reviews",
-      "settings": {},
       "blocks": {
         "b1": {
           "type": "review",
           "settings": {
-            "placeholder": true
+            "placeholder": true,
+            "help": "",
+            "quote": "",
+            "author": ""
           }
         },
         "b2": {
           "type": "review",
           "settings": {
-            "placeholder": true
+            "placeholder": true,
+            "help": "",
+            "quote": "",
+            "author": ""
           }
         },
         "b3": {
           "type": "review",
           "settings": {
-            "placeholder": true
+            "placeholder": true,
+            "help": "",
+            "quote": "",
+            "author": ""
           }
         }
       },
@@ -216,18 +315,23 @@
         "b1",
         "b2",
         "b3"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "EXPERIENCIAS ROSELLE",
+        "heading": "El cuidado también se comparte."
+      }
     },
     "trust": {
       "type": "roselle-trust",
-      "settings": {},
       "blocks": {
         "b1": {
           "type": "trust",
           "settings": {
             "icon": "shipping",
             "title": "Envíos a toda Argentina",
-            "text": "Consultá el costo y las opciones para tu dirección al comprar."
+            "text": "Consultá el costo y las opciones para tu dirección al comprar.",
+            "link": "",
+            "link_label": "Más información"
           }
         },
         "b2": {
@@ -235,7 +339,9 @@
           "settings": {
             "icon": "payment",
             "title": "Pago seguro",
-            "text": "Completá tu compra desde el checkout de nuestra tienda."
+            "text": "Completá tu compra desde el checkout de nuestra tienda.",
+            "link": "",
+            "link_label": "Más información"
           }
         },
         "b3": {
@@ -243,7 +349,9 @@
           "settings": {
             "icon": "support",
             "title": "Atención al cliente",
-            "text": "Encontrá los canales de atención en la información de contacto."
+            "text": "Encontrá los canales de atención en la información de contacto.",
+            "link": "",
+            "link_label": "Más información"
           }
         }
       },
@@ -251,11 +359,11 @@
         "b1",
         "b2",
         "b3"
-      ]
+      ],
+      "settings": {}
     },
     "faq": {
       "type": "roselle-faq",
-      "settings": {},
       "blocks": {
         "b1": {
           "type": "question",
@@ -315,11 +423,22 @@
         "b5",
         "b6",
         "b7"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "ANTES DE EMPEZAR",
+        "heading": "Conocé tu próximo ritual."
+      }
     },
     "closing": {
       "type": "roselle-closing",
-      "settings": {}
+      "settings": {
+        "eyebrow": "TU CUERPO. TU MOMENTO.",
+        "heading": "Sumá Roselle a tu rutina corporal.",
+        "body": "<p>Un cuidado simple para ayudar a que tu piel se vea más lisa, hidratada y cuidada.</p>",
+        "image_alt": "Roselle Crema Corporal de 200 ml",
+        "cta": "PEDIR MI ROSELLE",
+        "note": "Crema Corporal Anticelulitis Reafirmante · 200 ml"
+      }
     }
   },
   "order": [
