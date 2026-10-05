@@ -4,13 +4,13 @@
 <div class="rs-section-heading">
 <p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>
 <h2>{{ section.settings.heading | escape }}</h2>{% if section.settings.body != blank %}<div class="rs-prose">{{ section.settings.body }}</div>{% endif %}</div>
-<ol class="rs-steps">{% for block in section.blocks %}<li {{ block.shopify_attributes }}>
+<roselle-carousel class="rs-steps-carousel"><ol class="rs-steps rs-swipe" data-carousel-track>{% for block in section.blocks %}<li class="rs-tap" data-carousel-item {{ block.shopify_attributes }}>
 <span aria-hidden="true">0{{ forloop.index }}</span>
 <div>
 <h3>{{ block.settings.title | escape }}</h3>
 <p>{{ block.settings.text | escape }}</p>
 </div>
-</li>{% endfor %}</ol>
+</li>{% endfor %}</ol>{%- if section.blocks.size > 1 -%}<div class="rs-dots">{% for block in section.blocks %}<button type="button" class="rs-dot" data-carousel-go="{{ forloop.index0 }}" aria-label="{{ block.settings.title | escape }}"{% if forloop.first %} aria-current="true"{% endif %}></button>{% endfor %}</div>{%- endif -%}</roselle-carousel>
 {% if section.settings.zones != blank %}<p class="rs-zones">{{ section.settings.zones | escape }}</p>{% endif %}
 {% if section.settings.note != blank %}<p class="rs-note">{{ section.settings.note | escape }}</p>{% endif %}
 </div>

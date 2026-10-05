@@ -1,13 +1,19 @@
 <div class="rs-closing">
 <div class="rs-wrap rs-split">
-<div class="rs-closing-art">{% assign closing_image = section.settings.image | default: settings.roselle_product.featured_image %}{% render 'roselle-media', image: closing_image, kind: 'product', label: section.settings.image_alt %}</div>
-<div>
+<div class="rs-closing-art" data-reveal>{% assign closing_image = section.settings.image | default: settings.roselle_product.featured_image %}{% render 'roselle-media', image: closing_image, kind: 'product', label: section.settings.image_alt %}</div>
+<div class="rs-closing-copy" data-reveal>
 <div class="rs-section-heading">
 <p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>
 <h2>{{ section.settings.heading | escape }}</h2>{% if section.settings.body != blank %}<div class="rs-prose">{{ section.settings.body }}</div>{% endif %}</div>
-<a class="rs-button" href="#roselle-comprar">{{ section.settings.cta | escape }} <span aria-hidden="true">↗</span>
+<a class="rs-button rs-closing-cta" href="#roselle-comprar" data-roselle-buy>{{ section.settings.cta | escape }} <span aria-hidden="true">↗</span>
 </a>
-<p class="rs-note">{{ section.settings.note | escape }}</p>
+{%- if section.settings.badge_1 != blank or section.settings.badge_2 != blank -%}
+<ul class="rs-closing-badges" role="list">
+{%- if section.settings.badge_1 != blank -%}<li><span aria-hidden="true">{{ 'icon-checkmark.svg' | inline_asset_content }}</span>{{ section.settings.badge_1 | escape }}</li>{%- endif -%}
+{%- if section.settings.badge_2 != blank -%}<li><span aria-hidden="true">{{ 'icon-checkmark.svg' | inline_asset_content }}</span>{{ section.settings.badge_2 | escape }}</li>{%- endif -%}
+</ul>
+{%- endif -%}
+{%- if section.settings.note != blank -%}<p class="rs-note">{{ section.settings.note | escape }}</p>{%- endif -%}
 </div>
 </div>
 </div>
@@ -56,6 +62,18 @@
       "id": "note",
       "label": "Nota",
       "default": "Crema Corporal Anticelulitis Reafirmante · 200 ml"
+    },
+    {
+      "type": "text",
+      "id": "badge_1",
+      "label": "Destacado 1 bajo el botón",
+      "default": "ENVÍO GRATIS A TODA ARGENTINA"
+    },
+    {
+      "type": "text",
+      "id": "badge_2",
+      "label": "Destacado 2 bajo el botón",
+      "default": "PAGO SEGURO"
     }
   ],
   "class": "roselle-section",

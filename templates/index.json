@@ -192,7 +192,7 @@
         "eyebrow": "TEXTURA Y APARIENCIA",
         "heading": "Mirá la diferencia",
         "subheading": "Compará visualmente la textura y apariencia de la piel.",
-        "layout": "side",
+        "layout": "slider",
         "aspect_ratio": "4-5",
         "columns_desktop": "2",
         "label_before": "ANTES",

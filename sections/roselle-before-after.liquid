@@ -35,9 +35,11 @@
         {%- endif -%}
       </div>
 
+      <roselle-carousel class="rs-compare-carousel">
       <div
-        class="rs-compare-grid rs-compare-grid--{{ columns }} rs-compare-grid--{{ section.settings.layout }}"
+        class="rs-compare-grid rs-compare-grid--{{ columns }} rs-compare-grid--{{ section.settings.layout }}{% if visible_count > 1 %} rs-swipe{% endif %}"
         style="--rs-compare-ratio: {{ aspect }};"
+        data-carousel-track
       >
         {%- for block in section.blocks -%}
           {%- liquid
@@ -53,7 +55,7 @@
             assign before_alt = block.settings.before_alt | default: section.settings.label_before
             assign after_alt = block.settings.after_alt | default: section.settings.label_after
           -%}
-          <figure class="rs-compare" {{ block.shopify_attributes }}>
+          <figure class="rs-compare" data-carousel-item {{ block.shopify_attributes }}>
             {%- if section.settings.layout == 'slider' -%}
               <roselle-compare class="rs-compare-slider" style="--rs-compare-pos: 50%;">
                 <div class="rs-compare-frame rs-compare-frame--after">
@@ -120,6 +122,24 @@
           </figure>
         {%- endfor -%}
       </div>
+      {%- if visible_count > 1 -%}
+        <div class="rs-dots">
+          {%- assign dot_index = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign show_dot = request.design_mode
+              if block.settings.before_image != blank and block.settings.after_image != blank
+                assign show_dot = true
+              endif
+            -%}
+            {%- if show_dot -%}
+              <button type="button" class="rs-dot" data-carousel-go="{{ dot_index }}" aria-label="{{ block.settings.zone | default: block.settings.title | default: forloop.index | escape }}"{% if dot_index == 0 %} aria-current="true"{% endif %}></button>
+              {%- assign dot_index = dot_index | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+      </roselle-carousel>
 
       {%- if request.design_mode and visible_count == 0 -%}
         <p class="rs-editor-note">{{ section.settings.editor_hint | escape }}</p>

@@ -1,7 +1,7 @@
 <div class="rs-story rs-tone-{{ section.settings.tone }}">
 <div class="rs-wrap rs-split {% if section.settings.reverse %}rs-split--reverse{% endif %}">
-  <div class="rs-story-media">{% render 'roselle-media', image: section.settings.image, kind: section.settings.media_kind, label: section.settings.image_alt %}</div>
-  <div class="rs-story-copy">
+  <div class="rs-story-media" data-reveal>{% render 'roselle-media', image: section.settings.image, kind: section.settings.media_kind, label: section.settings.image_alt %}</div>
+  <div class="rs-story-copy" data-reveal>
 <div class="rs-section-heading">
 <p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>
 <h2>{{ section.settings.heading | escape }}</h2>{% if section.settings.body != blank %}<div class="rs-prose">{{ section.settings.body }}</div>{% endif %}</div>{% if section.settings.detail != blank %}<p class="rs-pullquote">{{ section.settings.detail | escape }}</p>{% endif %}{% if section.settings.cta != blank %}<a class="rs-text-link" href="#roselle-comprar">{{ section.settings.cta | escape }} <span aria-hidden="true">↗</span>

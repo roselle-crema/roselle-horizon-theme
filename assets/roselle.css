@@ -265,3 +265,114 @@
   .roselle-section .rs-ing-card--featured .rs-ing-title{font-size:31px}
   .rs-ing-dots{display:flex}
 }
+/* ---------- Etapa 2: interactividad, ritmo y conversión mobile ---------- */
+roselle-carousel,roselle-marquee{display:block}
+
+/* Shared microinteractions */
+.roselle-section .rs-button{transition:filter .2s ease,transform .15s ease,box-shadow .25s ease}
+.roselle-section .rs-button:active:not(:disabled){transform:scale(.98)}
+@media(hover:hover){.roselle-section .rs-button:hover:not(:disabled){box-shadow:0 8px 20px #622e3d2e}}
+.rs-tap{transition:transform .2s ease,box-shadow .25s ease}
+.rs-tap:active{transform:scale(.985)}
+.rs-gallery-thumb{transition:opacity .15s,border-color .15s,transform .2s ease}
+@media(hover:hover){.rs-gallery-thumb:hover{transform:translateY(-2px)}}
+
+/* Generic dots (mobile carousels) */
+.rs-dots{display:none;justify-content:center;gap:2px;margin-top:14px}
+.rs-dot{display:grid;place-items:center;width:24px;height:24px;padding:0;border:0;background:none;cursor:pointer}
+.rs-dot::before{content:"";width:7px;height:7px;border-radius:4px;background:var(--rs-ink);opacity:.25;transition:width .3s ease,opacity .3s ease,background-color .3s ease}
+.rs-dot[aria-current]::before{width:18px;opacity:1;background:var(--rs-burgundy)}
+
+/* One-time entrance (only after roselle.js opts in; see rs-reveal-ready) */
+.rs-reveal-ready [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.rs-reveal-ready [data-reveal].is-revealed{opacity:1;transform:none}
+.rs-reveal-ready .rs-story-copy[data-reveal],.rs-reveal-ready .rs-closing-copy[data-reveal]{transition-delay:.1s}
+
+/* Before / after slider: handle is the touch drag target, taps jump, image swipes the carousel */
+.rs-compare-slider{touch-action:pan-x pan-y;cursor:ew-resize}
+.rs-compare-slider--free{touch-action:pan-y}
+.rs-compare-slider img{-webkit-user-drag:none;user-select:none;pointer-events:none}
+.rs-compare-range{z-index:1;pointer-events:none}
+.rs-compare-handle{z-index:3;pointer-events:auto;cursor:ew-resize;touch-action:none}
+.rs-compare-handle::after{content:"";position:absolute;top:0;bottom:0;left:-24px;right:-24px}
+.rs-compare-handle span{transition:transform .2s ease,box-shadow .2s ease}
+.rs-compare-slider.is-dragging .rs-compare-handle span{transform:scale(1.08);box-shadow:0 6px 20px #402d2c40}
+.rs-compare-slider.is-animating .rs-compare-frame--before{transition:clip-path .35s ease}
+.rs-compare-slider.is-animating .rs-compare-handle{transition:left .35s ease}
+
+/* Reviews marquee */
+.rs-marquee{margin-top:38px}
+.rs-review-grid.rs-marquee-track{display:flex;gap:18px;margin-top:0;padding:4px 0 12px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;overscroll-behavior-x:contain}
+.rs-marquee-track::-webkit-scrollbar{display:none}
+.rs-marquee-track>.rs-review{flex:0 0 340px;border-radius:16px;scroll-snap-align:start;transition:transform .25s ease,box-shadow .25s ease}
+.rs-marquee.is-marquee .rs-marquee-track{scroll-snap-type:none;cursor:grab;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.rs-marquee-track.is-dragging{cursor:grabbing;-webkit-user-select:none;user-select:none}
+@media(hover:hover){.rs-marquee-track>.rs-review:hover{transform:translateY(-3px);box-shadow:0 10px 26px #402d2c14}}
+
+/* Trust (desktop keeps the row) */
+.rs-trust-copy h2{margin-bottom:6px}
+
+/* Closing: the commercial close */
+.rs-closing{padding-block:84px}
+.roselle-section .rs-closing h2{font-size:clamp(38px,4.2vw,58px);line-height:1.08}
+.roselle-section .rs-closing .rs-closing-cta{width:100%;max-width:460px;min-height:64px;margin-top:30px;font-size:14px;letter-spacing:.12em;box-shadow:0 12px 28px #622e3d33}
+.rs-closing-badges{display:flex;flex-wrap:wrap;gap:10px 22px;margin:18px 0 0;padding:0;list-style:none;color:var(--rs-burgundy);font-size:11px;font-weight:700;line-height:1.4;letter-spacing:.14em}
+.rs-closing-badges li{display:inline-flex;align-items:center;gap:8px}
+.rs-closing-badges svg{width:16px;height:16px}
+.rs-closing-art{border-radius:16px}
+
+@media(max-width:749px){
+  /* Shared mobile swipe track: ~19% of the next card peeks */
+  .rs-swipe.rs-swipe{display:flex;gap:12px;margin-inline:-20px;padding:4px 20px 8px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:20px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .rs-swipe::-webkit-scrollbar{display:none}
+  .rs-swipe.rs-swipe>*{flex:0 0 86%;min-width:0;scroll-snap-align:start}
+  .rs-dots{display:flex}
+
+  /* Benefits */
+  .rs-benefits{padding-block:22px 16px}
+  .rs-benefit,.rs-benefit:first-child,.rs-benefit:last-child{padding:20px 18px;border:1px solid #402d2c14;border-radius:16px;background:#fffaf6}
+  .rs-benefit p{font-size:13px}
+
+  /* Before / after: one comparison per view, swipe between zones */
+  .rs-compare-grid.rs-swipe{gap:12px}
+  .rs-swipe .rs-compare-slider{margin-inline:0}
+
+  /* Routine steps as cards */
+  .rs-routine .rs-split>*{min-width:0}
+  .rs-steps.rs-swipe{margin:24px -20px 0}
+  .rs-steps.rs-swipe li{flex-direction:column;gap:8px;padding:22px 20px;border:1px solid #402d2c14;border-radius:16px;background:#fffaf6}
+  .rs-steps.rs-swipe li>span{font-size:32px;line-height:1}
+  .rs-steps.rs-swipe p{font-size:14px}
+  .rs-steps-carousel+.rs-zones{margin-top:18px}
+
+  /* Reviews */
+  .rs-marquee{margin:26px -20px 0}
+  .rs-review-grid.rs-marquee-track{padding-inline:20px;scroll-padding-inline:20px}
+  .rs-marquee-track>.rs-review{flex-basis:80%}
+
+  /* Trust as compact swipeable chips */
+  .rs-trust{padding-block:16px}
+  .rs-trust-grid.rs-swipe{width:auto;margin-inline:0;gap:10px;padding-block:2px 4px;text-align:left}
+  .rs-trust-grid.rs-swipe>.rs-trust-item{flex-basis:86%;display:flex;align-items:center;gap:12px;max-width:none;margin:0;padding:12px 14px;border:1px solid #402d2c1a;border-radius:14px;background:#fffaf6}
+  .rs-trust-item .rs-trust-icon{display:grid;flex:0 0 38px;place-items:center;width:38px;height:38px;margin:0;border-radius:50%;background:#efe5de;color:var(--rs-burgundy)}
+  .rs-trust-item .rs-trust-icon svg{width:18px;height:18px}
+  .roselle-section .rs-trust-item h2{margin-bottom:2px;font-size:17px}
+  .rs-trust-item p{font-size:12px;line-height:1.4}
+
+  /* Closing: heading, product, then a full-width CTA */
+  .rs-closing{padding-block:48px 56px}
+  .rs-closing .rs-split{display:flex;flex-direction:column;gap:0}
+  .rs-closing .rs-closing-copy{display:contents}
+  .rs-closing .rs-section-heading{order:1}
+  .rs-closing .rs-closing-art{order:2;margin-top:22px;aspect-ratio:1.35}
+  .roselle-section .rs-closing .rs-closing-cta{order:3;max-width:none;margin-top:22px}
+  .rs-closing-badges{order:4;justify-content:center;gap:8px 18px;font-size:10px}
+  .rs-closing .rs-note{order:5;text-align:center}
+  .roselle-section .rs-closing h2{font-size:clamp(34px,9vw,42px)}
+
+  /* Sticky purchase bar: slides in once the hero form is out of view */
+  .rs-sticky.is-ready{gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));border-top:0;border-radius:16px 16px 0 0;background:#fffaf7f2;box-shadow:0 -8px 28px #402d2c1f;transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.7,.2,1);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+  .rs-sticky.is-ready.is-visible{transform:none}
+  .rs-sticky .rs-button{min-width:140px;min-height:46px}
+}
+@media(prefers-reduced-motion:reduce){.roselle-section *,.roselle-section *::before{animation:none!important}.rs-reveal-ready [data-reveal]{opacity:1;transform:none}}
