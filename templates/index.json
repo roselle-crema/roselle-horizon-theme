@@ -119,13 +119,25 @@
         "c1": {
           "type": "comparison",
           "settings": {
-            "zone": "Muslos"
+            "before_image": "shopify://shop_images/8b23df89-7be0-48e0-8d39-528d676218e9.png",
+            "before_alt": "",
+            "after_image": "shopify://shop_images/332780ef-d904-472a-a04b-b10f56fb215a.png",
+            "after_alt": "",
+            "zone": "piernas",
+            "title": "",
+            "text": ""
           }
         },
         "c2": {
           "type": "comparison",
           "settings": {
-            "zone": "Piernas"
+            "before_image": "shopify://shop_images/cdb2099e-044b-4d1b-93ca-7f4b36321bca.png",
+            "before_alt": "",
+            "after_image": "shopify://shop_images/0012dae5-9bd6-4cc0-b8d7-fe03794edb37.png",
+            "after_alt": "",
+            "zone": "Brazos",
+            "title": "",
+            "text": ""
           }
         }
       },
@@ -133,7 +145,20 @@
         "c1",
         "c2"
       ],
-      "settings": {}
+      "settings": {
+        "eyebrow": "TEXTURA Y APARIENCIA",
+        "heading": "Una piel que se ve diferente",
+        "subheading": "Compará visualmente la apariencia de la textura, suavidad y uniformidad de la piel.",
+        "layout": "side",
+        "aspect_ratio": "4-5",
+        "columns_desktop": "2",
+        "label_before": "ANTES",
+        "label_after": "DESPUÉS",
+        "slider_label": "Deslizá para comparar antes y después",
+        "tone": "light",
+        "note": "Imágenes de referencia con fines ilustrativos. La apariencia de la piel puede variar según cada persona.",
+        "editor_hint": "Cargá la imagen Antes y la imagen Después en cada comparación para mostrarla en la tienda."
+      }
     },
     "problem": {
       "type": "roselle-story",
@@ -170,9 +195,10 @@
         "b1": {
           "type": "ingredient",
           "settings": {
+            "image": "shopify://shop_images/908aacfd-4fba-4609-92a9-35b6d9917655.png",
             "featured": true,
-            "title": "Cafeína",
             "label": "ACTIVO PROTAGONISTA",
+            "title": "Cafeína",
             "text": "Un activo de cuidado corporal que acompaña una piel de aspecto más liso y ayuda a mejorar la apariencia de la celulitis.",
             "benefit": "TEXTURA Y APARIENCIA"
           }
@@ -180,8 +206,10 @@
         "b2": {
           "type": "ingredient",
           "settings": {
-            "title": "PDRN",
+            "image": "shopify://shop_images/d5960f60-eca6-4c84-84b0-93d3e548bc12.png",
+            "featured": false,
             "label": "CUIDADO COMPLEMENTARIO",
+            "title": "PDRN",
             "text": "Integra la fórmula para acompañar el acondicionamiento cosmético y una piel de aspecto cuidado.",
             "benefit": "PIEL ACONDICIONADA"
           }
@@ -189,8 +217,10 @@
         "b3": {
           "type": "ingredient",
           "settings": {
-            "title": "Ácido Hialurónico",
+            "image": "shopify://shop_images/6dca21c1-7474-420e-8d4d-fdbbe13914da.png",
+            "featured": false,
             "label": "HIDRATACIÓN",
+            "title": "Ácido Hialurónico",
             "text": "Un ingrediente humectante que ayuda a conservar la hidratación y aporta una sensación de suavidad.",
             "benefit": "HIDRATACIÓN Y SUAVIDAD"
           }
@@ -198,8 +228,10 @@
         "b4": {
           "type": "ingredient",
           "settings": {
-            "title": "Centella Asiática",
+            "image": "shopify://shop_images/e4773924-057a-4522-b270-e95a892e9dda.png",
+            "featured": false,
             "label": "CUIDADO BOTÁNICO",
+            "title": "Centella Asiática",
             "text": "Complementa el cuidado de la textura para una piel visualmente más uniforme.",
             "benefit": "APARIENCIA UNIFORME"
           }
@@ -207,8 +239,10 @@
         "b5": {
           "type": "ingredient",
           "settings": {
-            "title": "Vitamina E",
+            "image": "shopify://shop_images/8c73ed56-7f11-4541-9677-a57a1b936f89.png",
+            "featured": false,
             "label": "SUAVIDAD",
+            "title": "Vitamina E",
             "text": "Un ingrediente antioxidante que complementa el cuidado cosmético y ayuda a mantener la piel suave.",
             "benefit": "CUIDADO Y CONFORT"
           }
@@ -225,7 +259,12 @@
         "eyebrow": "LA FÓRMULA, EN DETALLE",
         "heading": "Cinco activos. Un mismo cuidado.",
         "body": "<p>La Cafeína es protagonista de una fórmula que combina cuidado de la textura, hidratación y suavidad.</p>",
-        "note": "Los beneficios se refieren al cuidado cosmético de la piel. La experiencia puede variar según cada persona."
+        "note": "Los beneficios se refieren al cuidado cosmético de la piel. La experiencia puede variar según cada persona.",
+        "image_ratio": "1-1",
+        "show_dots": true,
+        "tone": "cream",
+        "prev_label": "Ingrediente anterior",
+        "next_label": "Ingrediente siguiente"
       }
     },
     "routine": {
