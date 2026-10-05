@@ -113,3 +113,113 @@ if (!customElements.get('roselle-gallery')) {
     }
   });
 }
+
+/* Before/after slider: a native range input gives keyboard and screen-reader support; pointer events let mouse and touch drag from anywhere on the image. */
+if (!customElements.get('roselle-compare')) {
+  customElements.define('roselle-compare', class extends HTMLElement {
+    connectedCallback() {
+      this.controller = new AbortController();
+      const { signal } = this.controller;
+      this.range = this.querySelector('.rs-compare-range');
+      if (!this.range) return;
+      this.range.addEventListener('input', () => this.setPosition(this.range.value), { signal });
+      this.addEventListener('pointerdown', (event) => {
+        if (event.button !== 0) return;
+        this.dragging = true;
+        try { this.setPointerCapture(event.pointerId); } catch { /* pointer already released */ }
+        /* On touch, wait for a horizontal move so a vertical page scroll doesn't jump the divider. */
+        if (event.pointerType === 'mouse') this.fromPointer(event);
+      }, { signal });
+      this.addEventListener('pointermove', (event) => {
+        if (this.dragging) this.fromPointer(event);
+      }, { signal });
+      for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) {
+        this.addEventListener(type, () => { this.dragging = false; }, { signal });
+      }
+      this.setPosition(this.range.value);
+    }
+    fromPointer(event) {
+      const rect = this.getBoundingClientRect();
+      const ratio = (event.clientX - rect.left) / rect.width;
+      const value = Math.round(Math.min(Math.max(ratio, 0), 1) * 100);
+      this.range.value = String(value);
+      this.setPosition(value);
+    }
+    setPosition(value) {
+      this.style.setProperty('--rs-compare-pos', `${value}%`);
+    }
+    disconnectedCallback() {
+      this.controller?.abort();
+    }
+  });
+}
+
+/* Ingredient carousel: CSS scroll-snap does the swiping; this wires arrows, dots and Theme Editor block selection. */
+if (!customElements.get('roselle-carousel')) {
+  customElements.define('roselle-carousel', class extends HTMLElement {
+    connectedCallback() {
+      this.controller = new AbortController();
+      const { signal } = this.controller;
+      this.track = this.querySelector('[data-carousel-track]');
+      this.items = [...this.querySelectorAll('[data-carousel-item]')];
+      this.prev = this.querySelector('[data-carousel-prev]');
+      this.next = this.querySelector('[data-carousel-next]');
+      this.dots = [...this.querySelectorAll('[data-carousel-go]')];
+      if (!this.track || this.items.length < 2) return;
+
+      this.prev?.addEventListener('click', () => this.step(-1), { signal });
+      this.next?.addEventListener('click', () => this.step(1), { signal });
+      this.addEventListener('click', (event) => {
+        const dot = event.target.closest('[data-carousel-go]');
+        if (dot) this.goTo(Number(dot.dataset.carouselGo));
+      }, { signal });
+
+      let frame = 0;
+      this.track.addEventListener('scroll', () => {
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(() => this.update());
+      }, { passive: true, signal });
+      window.addEventListener('resize', () => this.update(), { passive: true, signal });
+
+      document.addEventListener('shopify:block:select', (event) => {
+        const index = this.items.findIndex((item) => item === event.target || item.contains(event.target));
+        if (index > -1) this.goTo(index, true);
+      }, { signal });
+
+      this.update();
+    }
+    offsetOf(index) {
+      const first = this.items[0];
+      return this.items[index].offsetLeft - first.offsetLeft;
+    }
+    currentIndex() {
+      const left = Math.abs(this.track.scrollLeft);
+      let closest = 0;
+      this.items.forEach((_, i) => {
+        if (Math.abs(this.offsetOf(i) - left) < Math.abs(this.offsetOf(closest) - left)) closest = i;
+      });
+      return closest;
+    }
+    step(direction) {
+      this.goTo(Math.min(Math.max(this.currentIndex() + direction, 0), this.items.length - 1));
+    }
+    goTo(index, instant = false) {
+      const reduce = instant || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      this.track.scrollTo({ left: this.offsetOf(index), behavior: reduce ? 'auto' : 'smooth' });
+    }
+    update() {
+      const max = this.track.scrollWidth - this.track.clientWidth;
+      const left = Math.abs(this.track.scrollLeft);
+      if (this.prev) this.prev.disabled = left <= 2;
+      if (this.next) this.next.disabled = left >= max - 2;
+      const current = left >= max - 2 ? this.items.length - 1 : this.currentIndex();
+      this.dots.forEach((dot, i) => {
+        if (i === current) dot.setAttribute('aria-current', 'true');
+        else dot.removeAttribute('aria-current');
+      });
+    }
+    disconnectedCallback() {
+      this.controller?.abort();
+    }
+  });
+}

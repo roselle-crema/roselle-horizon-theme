@@ -113,6 +113,28 @@
       ],
       "settings": {}
     },
+    "before_after": {
+      "type": "roselle-before-after",
+      "blocks": {
+        "c1": {
+          "type": "comparison",
+          "settings": {
+            "zone": "Muslos"
+          }
+        },
+        "c2": {
+          "type": "comparison",
+          "settings": {
+            "zone": "Piernas"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2"
+      ],
+      "settings": {}
+    },
     "problem": {
       "type": "roselle-story",
       "settings": {
@@ -148,8 +170,9 @@
         "b1": {
           "type": "ingredient",
           "settings": {
+            "featured": true,
             "title": "Cafeína",
-            "label": "EL ACTIVO PROTAGONISTA",
+            "label": "ACTIVO PROTAGONISTA",
             "text": "Un activo de cuidado corporal que acompaña una piel de aspecto más liso y ayuda a mejorar la apariencia de la celulitis.",
             "benefit": "TEXTURA Y APARIENCIA"
           }
@@ -421,6 +444,7 @@
   "order": [
     "hero",
     "benefits",
+    "before_after",
     "problem",
     "solution",
     "ingredients",
