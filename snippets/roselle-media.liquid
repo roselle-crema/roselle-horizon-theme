@@ -10,31 +10,54 @@
   {% if priority %}{% assign loading = 'eager' %}{% assign priority_hint = 'high' %}{% endif %}
   {{ image | image_url: width: 1600 | image_tag: widths: '320, 480, 640, 900, 1200, 1600', sizes: '(min-width: 900px) 50vw, 100vw', loading: loading, fetchpriority: priority_hint, alt: label, class: 'rs-image' }}
 {% else %}
-  <div class="rs-placeholder rs-placeholder--{{ kind | default: 'product' }}" role="img" aria-label="{{ label | escape }} — ilustración de referencia">
-    <span class="rs-orbit rs-orbit--one" aria-hidden="true">
-</span>
-<span class="rs-orbit rs-orbit--two" aria-hidden="true">
-</span>
+  {%- assign placeholder_label = label | append: ' — ' | append: settings.roselle_ui_placeholder -%}
+  <div class="rs-placeholder rs-placeholder--{{ kind | default: 'product' }}" role="img" aria-label="{{ placeholder_label | escape }}">
+    <span class="rs-orbit rs-orbit--one" aria-hidden="true"></span>
+    <span class="rs-orbit rs-orbit--two" aria-hidden="true"></span>
     {% case kind %}
-      {% when 'texture' %}<span class="rs-cream" aria-hidden="true">
-</span>
-      {% when 'ritual' %}<span class="rs-ritual-shape" aria-hidden="true">
-</span>
-<span class="rs-ritual-line" aria-hidden="true">
-</span>
-      {% when 'ingredient' %}<span class="rs-ingredient-shape" aria-hidden="true">
-</span>
-      {% else %}<div class="rs-jar" aria-hidden="true">
-<div class="rs-jar-lid">
-</div>
-<div class="rs-jar-body">
-<span class="rs-jar-brand">Roselle</span>
-<span class="rs-jar-rule">
-</span>
-<span class="rs-jar-name">CREMA CORPORAL<br>ANTICELULITIS<br>REAFIRMANTE</span>
-<span class="rs-jar-volume">200 ml</span>
-</div>
-</div>
+      {% when 'texture' %}
+        <span class="rs-cream" aria-hidden="true"></span>
+      {% when 'ritual' %}
+        <span class="rs-ritual-shape" aria-hidden="true"></span>
+        <span class="rs-ritual-line" aria-hidden="true"></span>
+      {% when 'ingredient' %}
+        <span class="rs-ingredient-shape" aria-hidden="true"></span>
+      {% else %}
+        {%- comment -%} Bottle of 200 ml with black pump, white cream and a cream/mauve label (see ROSELLE_BRIEF.md §7). {%- endcomment -%}
+        <svg class="rs-bottle" viewBox="0 0 240 420" aria-hidden="true" focusable="false">
+          <ellipse cx="124" cy="404" rx="86" ry="9" fill="#7a4d56" opacity=".14"/>
+          <rect x="56" y="22" width="44" height="9" rx="4" fill="#1b1717"/>
+          <rect x="92" y="14" width="62" height="22" rx="5" fill="#1b1717"/>
+          <rect x="115" y="36" width="16" height="30" fill="#1b1717"/>
+          <rect x="99" y="62" width="48" height="36" rx="6" fill="#1b1717"/>
+          <rect x="105" y="66" width="4" height="28" rx="2" fill="#ffffff" opacity=".18"/>
+          <path d="M84 96h78c14 0 24 10 24 24v262c0 10-8 18-18 18H76c-10 0-18-8-18-18V120c0-14 12-24 26-24z" fill="#fbf6f0" stroke="#d6c2b8"/>
+          <path d="M170 104c9 4 16 12 16 22v256c0 10-8 18-18 18h-6z" fill="#e3d3c9" opacity=".7"/>
+          <rect x="68" y="112" width="7" height="270" rx="3.5" fill="#ffffff" opacity=".75"/>
+          <rect x="68" y="146" width="108" height="214" rx="6" fill="#f4e8e3" stroke="#b9848c" stroke-opacity=".55"/>
+          <g fill="#7a4d56" text-anchor="middle" font-family="Arial, Helvetica, sans-serif">
+            <text x="122" y="186" font-family="Georgia, 'Times New Roman', serif" font-size="25" letter-spacing="-.5">Roselle</text>
+            <text x="122" y="222" font-size="13" font-weight="700" letter-spacing="2.2">CAFEÍNA</text>
+            <text x="122" y="238" font-size="8">+ PDRN</text>
+            <text x="122" y="250" font-size="8">+ Ácido Hialurónico</text>
+            <text x="122" y="264" font-size="6.2">Centella Asiática + Vitamina E</text>
+            <text x="122" y="292" font-size="7" letter-spacing="1.1">CREMA CORPORAL</text>
+            <text x="122" y="302" font-size="7" letter-spacing="1.1">ANTICELULITIS</text>
+            <text x="122" y="312" font-size="7" letter-spacing="1.1">REAFIRMANTE</text>
+            <text x="122" y="344" font-size="9" letter-spacing=".6">200 ml</text>
+          </g>
+          <g fill="none" stroke="#b9848c" stroke-linecap="round">
+            <path d="M104 198h36"/>
+            <path d="M80 352c8-10 14-20 16-32"/>
+          </g>
+          <g fill="#b9848c" opacity=".75">
+            <ellipse cx="88" cy="336" rx="5" ry="2.4" transform="rotate(-50 88 336)"/>
+            <ellipse cx="95" cy="328" rx="5" ry="2.4" transform="rotate(-20 95 328)"/>
+            <ellipse cx="84" cy="344" rx="4.5" ry="2.2" transform="rotate(-80 84 344)"/>
+          </g>
+          <path d="M14 398c-2-12 10-18 20-15 4-11 22-12 28-2 10-2 18 6 15 17z" fill="#fffefb" stroke="#e7ddd3"/>
+          <path d="M30 390c6-4 14-4 20 0M44 386c4-3 9-3 13 0" fill="none" stroke="#e7ddd3" stroke-linecap="round"/>
+        </svg>
     {% endcase %}
     <span class="rs-placeholder-caption">{{ settings.roselle_ui_placeholder | escape }}</span>
   </div>

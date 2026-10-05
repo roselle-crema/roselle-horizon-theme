@@ -1,36 +1,158 @@
 {% liquid
   assign roselle_product = settings.roselle_product
-  assign hero_image = section.settings.image | default: roselle_product.featured_image
   assign form_id = 'RoselleProduct-' | append: section.id
+  assign gallery = section.blocks
+  if section.settings.show_product_media and roselle_product != blank and roselle_product.media.size > 0
+    if section.settings.blocks_position == 'before'
+      assign gallery = section.blocks | concat: roselle_product.media
+    else
+      assign gallery = roselle_product.media | concat: section.blocks
+    endif
+  endif
+  assign default_alt = roselle_product.title | default: section.settings.image_alt
+  assign aspect = section.settings.aspect_ratio | replace: '-', ' / '
 %}
-<div class="rs-hero rs-wrap" id="roselle-comprar">
+<div class="rs-hero rs-wrap{% if section.settings.gallery_position == 'right' %} rs-hero--gallery-right{% endif %}" id="roselle-comprar">
+  <roselle-gallery
+    class="rs-gallery rs-gallery--{{ section.settings.image_fit }}"
+    style="--rs-gallery-ratio: {{ aspect }};"
+  >
+    <div class="rs-gallery-viewport">
+      <div
+        class="rs-gallery-track"
+        data-gallery-track
+        tabindex="0"
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="{{ section.settings.gallery_label | escape }}"
+      >
+        {%- for item in gallery -%}
+          {%- liquid
+            assign loading = 'lazy'
+            assign priority = 'low'
+            if forloop.first
+              assign loading = 'eager'
+              assign priority = 'high'
+            endif
+          -%}
+          {%- if item.media_type -%}
+            <div class="rs-gallery-slide" data-gallery-slide data-media-id="{{ item.id }}" role="group" aria-label="{{ forloop.index }} / {{ forloop.length }}">
+              {%- case item.media_type -%}
+                {%- when 'video' -%}
+                  {{ item | video_tag: image_size: '1200x', controls: true, preload: 'none', playsinline: true, class: 'rs-gallery-media' }}
+                {%- when 'external_video' -%}
+                  {{ item | external_video_url: rel: 0 | external_video_tag: class: 'rs-gallery-media', loading: 'lazy' }}
+                {%- else -%}
+                  {%- assign media_alt = item.alt | default: default_alt -%}
+                  {%- if item.preview_image != blank -%}
+                    {{ item.preview_image | image_url: width: 1600 | image_tag: widths: '375, 550, 750, 1000, 1200, 1600', sizes: '(min-width: 990px) min(640px, 50vw), 100vw', loading: loading, fetchpriority: priority, alt: media_alt, class: 'rs-gallery-media' }}
+                  {%- else -%}
+                    {% render 'roselle-media', kind: 'product', label: media_alt %}
+                  {%- endif -%}
+              {%- endcase -%}
+            </div>
+          {%- else -%}
+            <div class="rs-gallery-slide" data-gallery-slide role="group" aria-label="{{ forloop.index }} / {{ forloop.length }}" {{ item.shopify_attributes }}>
+              {%- if item.settings.image != blank -%}
+                {%- assign media_alt = item.settings.alt | default: item.settings.image.alt | default: default_alt -%}
+                {{ item.settings.image | image_url: width: 1600 | image_tag: widths: '375, 550, 750, 1000, 1200, 1600', sizes: '(min-width: 990px) min(640px, 50vw), 100vw', loading: loading, fetchpriority: priority, alt: media_alt, class: 'rs-gallery-media' }}
+              {%- else -%}
+                {%- assign media_alt = item.settings.alt | default: section.settings.image_alt -%}
+                {% render 'roselle-media', kind: item.settings.placeholder, label: media_alt %}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- else -%}
+          <div class="rs-gallery-slide" data-gallery-slide>
+            {% render 'roselle-media', kind: 'product', label: section.settings.image_alt %}
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if gallery.size > 1 -%}
+        <div class="rs-gallery-dots">
+          {%- for item in gallery -%}
+            <button
+              type="button"
+              class="rs-gallery-dot"
+              data-gallery-go="{{ forloop.index0 }}"
+              aria-label="{{ section.settings.thumb_label | escape }} {{ forloop.index }} / {{ forloop.length }}"
+              {% if forloop.first %}aria-current="true"{% endif %}
+            ></button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if gallery.size > 1 -%}
+      <div class="rs-gallery-thumbs">
+        {%- for item in gallery -%}
+          {%- liquid
+            if item.media_type
+              assign thumb = item.preview_image
+            else
+              assign thumb = item.settings.image
+            endif
+          -%}
+          <button
+            type="button"
+            class="rs-gallery-thumb"
+            data-gallery-go="{{ forloop.index0 }}"
+            aria-label="{{ section.settings.thumb_label | escape }} {{ forloop.index }} / {{ forloop.length }}"
+            {% if forloop.first %}aria-current="true"{% endif %}
+          >
+            {%- if thumb != blank -%}
+              {{ thumb | image_url: width: 200 | image_tag: widths: '100, 200', sizes: '84px', loading: 'lazy', alt: '' }}
+            {%- else -%}
+              <span class="rs-gallery-thumb-empty" aria-hidden="true"></span>
+            {%- endif -%}
+            {%- if item.media_type == 'video' or item.media_type == 'external_video' -%}
+              <span class="rs-gallery-thumb-play" aria-hidden="true">{{ 'icon-play.svg' | inline_asset_content }}</span>
+            {%- endif -%}
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </roselle-gallery>
+
   <div class="rs-hero-copy">
-<p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>
-<h1>{{ section.settings.heading | escape }} <em>{{ section.settings.heading_accent | escape }}</em>
-</h1>
-<div class="rs-prose">{{ section.settings.body }}</div>
-<a class="rs-button rs-mobile-jump" href="{% if roselle_product != blank %}#{{ form_id }}{% else %}#roselle-ingredientes{% endif %}">{{ section.settings.cta | escape }} <span aria-hidden="true">↗</span>
-</a>
-<p class="rs-active-line">{{ section.settings.actives | escape }}</p>
-    {% render 'roselle-purchase', product: roselle_product, form_id: form_id, cta: section.settings.cta %}
-    <p class="rs-note">{{ section.settings.note | escape }}</p>
-<a class="rs-text-link" href="#roselle-ingredientes">{{ section.settings.secondary_cta | escape }} <span aria-hidden="true">↓</span>
-</a>
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    {%- endif -%}
+    <h1>
+      {{- section.settings.heading | escape -}}
+      {%- if section.settings.heading_accent != blank %} <em>{{ section.settings.heading_accent | escape }}</em>{% endif -%}
+    </h1>
+    {%- if section.settings.body != blank -%}
+      <div class="rs-prose rs-hero-body">{{ section.settings.body }}</div>
+    {%- endif -%}
+    <div class="rs-hero-buy">
+      {% render 'roselle-purchase', product: roselle_product, form_id: form_id, cta: section.settings.cta %}
+      {%- if section.settings.note != blank -%}
+        <p class="rs-note">{{ section.settings.note | escape }}</p>
+      {%- endif -%}
+    </div>
+    {%- if section.settings.actives != blank -%}
+      <p class="rs-active-line">{{ section.settings.actives | escape }}</p>
+    {%- endif -%}
+    {%- if section.settings.secondary_cta != blank -%}
+      <a class="rs-text-link" href="#roselle-ingredientes">
+        {{- section.settings.secondary_cta | escape }} <span aria-hidden="true">↓</span>
+      </a>
+    {%- endif -%}
   </div>
-  <div class="rs-hero-art">
-<span class="rs-media-label">{{ section.settings.media_label | escape }}</span>{% render 'roselle-media', image: hero_image, kind: 'product', label: section.settings.image_alt, priority: true %}<div class="rs-media-foot">
-<span>{{ section.settings.media_footer | escape }}</span>
-<span>200 ml</span>
-</div>
-</div>
 </div>
 {% if section.settings.sticky and roselle_product != blank and roselle_product.available %}
   <div class="rs-sticky" data-roselle-sticky="{{ form_id }}" hidden>
     <div>
-<strong>{{ section.settings.sticky_title | escape }}</strong>
-<span data-sticky-price>{{ roselle_product.selected_or_first_available_variant.price | money_with_currency }}</span>
-</div>
-    {% if roselle_product.requires_selling_plan or roselle_product.variants.size >= 250 or roselle_product.quantity_price_breaks_configured? %}<a class="rs-button rs-button--small" href="{{ roselle_product.url }}">{{ settings.roselle_ui_choose_options | escape }}</a>{% else %}<button type="submit" form="{{ form_id }}" name="add" class="rs-button rs-button--small" {% unless roselle_product.selected_or_first_available_variant.available %}disabled{% endunless %}>{{ section.settings.sticky_cta | escape }}</button>{% endif %}
+      <strong>{{ section.settings.sticky_title | escape }}</strong>
+      <span data-sticky-price>{{ roselle_product.selected_or_first_available_variant.price | money_with_currency }}</span>
+    </div>
+    {%- if roselle_product.requires_selling_plan or roselle_product.variants.size >= 250 or roselle_product.quantity_price_breaks_configured? -%}
+      <a class="rs-button rs-button--small" href="{{ roselle_product.url }}">{{ settings.roselle_ui_choose_options | escape }}</a>
+    {%- else -%}
+      <button type="submit" form="{{ form_id }}" name="add" class="rs-button rs-button--small" {% unless roselle_product.selected_or_first_available_variant.available %}disabled{% endunless %}>{{ section.settings.sticky_cta | escape }}</button>
+    {%- endif -%}
   </div>
 {% endif %}
 
@@ -38,7 +160,116 @@
 {
   "name": "Roselle · Presentación",
   "tag": "section",
+  "class": "roselle-section",
+  "limit": 1,
+  "max_blocks": 12,
   "settings": [
+    {
+      "type": "header",
+      "content": "Galería"
+    },
+    {
+      "type": "paragraph",
+      "content": "Muestra los medios del producto seleccionado en Configuración del tema → Roselle. Sumá imágenes propias de la landing con el bloque \"Imagen de la galería\"."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_media",
+      "label": "Mostrar medios del producto",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "blocks_position",
+      "label": "Imágenes adicionales",
+      "options": [
+        {
+          "value": "after",
+          "label": "Después de los medios del producto"
+        },
+        {
+          "value": "before",
+          "label": "Antes de los medios del producto"
+        }
+      ],
+      "default": "after"
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "label": "Proporción de la galería",
+      "options": [
+        {
+          "value": "1-1",
+          "label": "Cuadrada (1:1)"
+        },
+        {
+          "value": "4-5",
+          "label": "Vertical (4:5)"
+        },
+        {
+          "value": "3-4",
+          "label": "Vertical alta (3:4)"
+        }
+      ],
+      "default": "4-5"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Ajuste de imágenes",
+      "options": [
+        {
+          "value": "contain",
+          "label": "Mostrar completa"
+        },
+        {
+          "value": "cover",
+          "label": "Llenar el espacio"
+        }
+      ],
+      "default": "contain",
+      "info": "\"Mostrar completa\" nunca recorta el producto."
+    },
+    {
+      "type": "select",
+      "id": "gallery_position",
+      "label": "Galería en desktop",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "right",
+          "label": "Derecha"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Descripción de la ilustración",
+      "info": "Se usa mientras no haya imágenes cargadas.",
+      "default": "Botella de Roselle Crema Corporal Anticelulitis Reafirmante de 200 ml"
+    },
+    {
+      "type": "text",
+      "id": "gallery_label",
+      "label": "Nombre accesible de la galería",
+      "default": "Imágenes de Roselle"
+    },
+    {
+      "type": "text",
+      "id": "thumb_label",
+      "label": "Nombre accesible de miniaturas",
+      "default": "Ver imagen"
+    },
+    {
+      "type": "header",
+      "content": "Textos"
+    },
     {
       "type": "text",
       "id": "eyebrow",
@@ -70,27 +301,8 @@
       "default": "Con Cafeína, PDRN, Ácido Hialurónico, Centella Asiática y Vitamina E."
     },
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Imagen"
-    },
-    {
-      "type": "text",
-      "id": "image_alt",
-      "label": "Descripción de imagen",
-      "default": "Crema Corporal Roselle de 200 ml"
-    },
-    {
-      "type": "text",
-      "id": "media_label",
-      "label": "Texto sobre imagen",
-      "default": "TU NUEVO RITUAL CORPORAL"
-    },
-    {
-      "type": "text",
-      "id": "media_footer",
-      "label": "Pie de imagen",
-      "default": "Cuidado que se vuelve rutina"
+      "type": "header",
+      "content": "Compra"
     },
     {
       "type": "text",
@@ -129,13 +341,50 @@
       "default": "AGREGAR"
     }
   ],
-  "limit": 1,
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Imagen de la galería",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen"
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "Texto alternativo",
+          "info": "Describí la imagen, por ejemplo: \"Roselle sobre el tocador del baño\"."
+        },
+        {
+          "type": "select",
+          "id": "placeholder",
+          "label": "Ilustración mientras no haya imagen",
+          "options": [
+            {
+              "value": "product",
+              "label": "Producto"
+            },
+            {
+              "value": "texture",
+              "label": "Textura"
+            },
+            {
+              "value": "ritual",
+              "label": "Aplicación"
+            }
+          ],
+          "default": "product"
+        }
+      ]
+    }
+  ],
   "enabled_on": {
     "templates": [
       "index"
     ]
   },
-  "class": "roselle-section",
   "presets": [
     {
       "name": "Roselle · Presentación"
